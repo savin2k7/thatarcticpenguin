@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I built a tiny HTTP server from scratch</title>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style2.css">
-    <script href="snowscript.js"></script>
+    <script src="theme.js" defer></script>
+    <script src="snowscript.js" defer></script>
     <style>
         /* Enhanced styling for lists and content */
         .content ul {
@@ -18,8 +30,9 @@
             position: relative;
             padding-left: 24px;
             margin-bottom: 12px;
-            color: #ccc;
+            color: var(--content-p-color);
             line-height: 1.7;
+            transition: color 0.3s;
         }
         
         .content ul li::before {
@@ -36,8 +49,9 @@
         }
         
         .content strong {
-            color: #fff;
+            color: var(--h1-color);
             font-weight: 600;
+            transition: color 0.3s;
         }
         
         .content em {
@@ -49,7 +63,8 @@
             margin-top: 50px;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid var(--header-border);
+            transition: border-bottom-color 0.3s;
         }
         
         /* Nested lists */
@@ -61,7 +76,8 @@
         
         .content ul ul li::before {
             content: '◦';
-            color: #888;
+            color: var(--meta-color);
+            transition: color 0.3s;
         }
     </style>
 </head>
@@ -69,6 +85,7 @@
     <div class="container">
         <header>
             <div class="logo">penguin</div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"></button>
         </header>
         <a href="index.html" class="back-link">back</a>
         <article>

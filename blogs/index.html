@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penguin's blogs</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <script src="theme.js" defer></script>
 </head>
 <body>
     <canvas id="snow"></canvas>
@@ -12,33 +24,12 @@
         <nav>
             <a href="../index.html">Penguin</a>
             <a href="index.html">/blogs</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"></button>
         </nav>
 
         <h1>thatarcticpenguin's blogs</h1>
 
         <div class="blogs-grid">
-            <a href="1-week-1-project.html" class="blog-link">
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="1w1pbanner.png" alt="1w1pbanner">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-title">
-                            <span class="bullet">•</span>Introducing 1W1P - 1 Week, 1 Project
-                        </div>
-                        <div class="blog-subtitle">A challenge made by me, for me.</div>
-                        <div class="blog-meta">
-                            <span class="blog-date">Feb 26, 2026</span>
-                        </div>
-                        <div class="blog-tags">
-                            <span class="tag">learnstuff</span>
-                            <span class="tag">challenge</span>
-                            <span class="tag">1W1P</span>
-                            <span class="tag">intro</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
             <a href="intro.html" class="blog-link">
                 <div class="blog-card">
@@ -115,7 +106,8 @@
 
     function draw() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        ctx.fillStyle = theme === 'dark' ? "rgba(255, 255, 255, 0.9)" : "rgba(100, 100, 100, 0.5)";
         ctx.beginPath();
 
         for (let flake of snowflakes) {

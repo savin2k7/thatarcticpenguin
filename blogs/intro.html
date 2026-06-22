@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style2.css">
+    <script src="theme.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo">penguin</div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"></button>
         </header>
         <a href="index.html" class="back-link">back</a>
         <article>
