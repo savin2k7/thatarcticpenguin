@@ -40,6 +40,20 @@
         <div class="hero">
             <h1 id="heading">That Arctic Penguin</h1>
             <p id="motto">Ice cream?</p>
+            <script>
+                (function() {
+                    const mottos = [
+                        "ice cream",
+                        "too cold for you",
+                        "0 kelvin coder",
+                        "pushing to localhost",
+                        "but why?",
+                        "call me emperor peng"
+                    ];
+                    const randomMotto = mottos[Math.floor(Math.random() * mottos.length)];
+                    document.getElementById('motto').textContent = randomMotto;
+                })();
+            </script>
             <nav class="socials">
                 <a href="https://github.com/thatarcticpenguin" aria-label="GitHub" id="github">
                     <i class="fa-brands fa-github"></i>
