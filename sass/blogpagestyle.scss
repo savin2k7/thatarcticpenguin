@@ -135,11 +135,18 @@ nav a:hover {
 
 h1 {
     color: var(--h1-color);
-    padding: 1.5rem 0;
-    margin-bottom: 3rem;
+    padding: 1.5rem 0 0 0;
+    margin-bottom: 0.8rem;
     font-size: 2.5rem;
     letter-spacing: 1px;
     transition: color 0.3s;
+}
+
+.friend-banners-label {
+    color: var(--meta-color);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
 }
 
 .friend-banners {
