@@ -23,7 +23,6 @@ jobs:
         uses: getzola/github-pages@v1
         with:
           zola_version: 'v0.19.2'
-          build_flags: "--config zola.toml"
 
   deploy:
     environment:
