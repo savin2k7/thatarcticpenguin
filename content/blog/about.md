@@ -43,13 +43,13 @@ Sometimes, I feel like I barely know anything related to the field I am in, but 
 I well remember the first time i touched a computer. When I was 6 on a boxy computer was the time i first used Windows 7, playing purble place and solitaire (i didn't know how to play both).
 
 The internet has a wierd way of inspiring you and making you feel inadequate at the same time.
-One video you're learning a topic you can get the hang of, and the next, you see someone building an [operating system from scratch]([https://thatmagicalcat.pages.dev](https://thatmagicalcat.pages.dev/projects)/).
+One video you're learning a topic you can get the hang of, and the next, you see someone building an [operating system from scratch](https://thatmagicalcat.pages.dev/projects/).
 
 ## What does "thatarcticpenguin" even mean?
 
 I don't know, but I can tell it's origin. I once kept a pfp of a penguin as my display pic on social media.
 
-![[Pasted image 20260709235241.png]]
+![Original PFP](https://ih1.redbubble.net/image.2045295459.1506/st,small,507x507-pad,600x600,f8f8f8.jpg)
 
 And the time i changed to a different one, a lot of people really liked it, so i just made up a niche username of a penguin
 
