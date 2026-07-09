@@ -8,6 +8,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,16 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Build Zola site
+      - name: Build Zola site and upload artifact
         uses: getzola/github-pages@v1
         with:
-          zola_version: v0.19.2
+          zola_version: '0.19.2'
           build_flags: "--config zola.toml"
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
 
   deploy:
     environment:
