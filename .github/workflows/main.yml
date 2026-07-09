@@ -19,6 +19,7 @@ jobs:
         uses: getzola/github-pages@v1
         with:
           zola_version: v0.19.2
+          config_file: zola.toml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
