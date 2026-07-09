@@ -142,10 +142,10 @@ h1 {
     transition: color 0.3s;
 }
 
-.blogs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+.blogs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
     margin-bottom: 3rem;
 }
 
@@ -161,9 +161,10 @@ h1 {
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
-    height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: stretch;
+    height: 140px;
 }
 
 .blog-card:hover {
@@ -173,21 +174,17 @@ h1 {
 }
 
 .blog-image {
-    width: 100%;
-    height: 200px;
+    width: 180px;
+    min-width: 180px;
     overflow: hidden;
     background: #0a0a0a;
     position: relative;
+    border-right: 1px solid var(--card-border);
+    transition: border-color 0.3s ease;
 }
 
-.blog-image::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #f1efea, #fff7ee, #f1efea);
+.blog-card:hover .blog-image {
+    border-color: var(--card-hover-border);
 }
 
 .blog-image img {
@@ -202,10 +199,12 @@ h1 {
 }
 
 .blog-content {
-    padding: 1.5rem;
+    padding: 1.2rem 1.5rem;
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
 }
 
 .blog-title {
@@ -237,22 +236,25 @@ h1 {
 }
 
 .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
     color: var(--meta-color);
     font-size: 0.85rem;
-    margin-bottom: 1rem;
     transition: color 0.3s;
 }
 
 .blog-date {
     color: var(--subtitle-color);
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .blog-tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-top: auto;
 }
 
 .tag {
@@ -292,12 +294,6 @@ h1 {
     left: 100%;
 }
 
-@media (max-width: 1200px) {
-    .blogs-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-}
-
 @media (max-width: 768px) {
     body {
         padding: 1rem;
@@ -308,17 +304,25 @@ h1 {
         padding: 1rem 0;
     }
 
-    .blogs-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .blog-card {
+        flex-direction: column;
+        height: auto;
     }
 
     .blog-image {
-        height: 180px;
+        width: 100%;
+        min-width: unset;
+        height: 160px;
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
     }
 
     .blog-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .blog-content {
+        padding: 1rem;
     }
 }
 

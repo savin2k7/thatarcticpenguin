@@ -7,7 +7,7 @@
 
     <h1>{{ section.title }}</h1>
 
-    <div class="blogs-grid">
+    <div class="blogs-list">
         {% for page in section.pages %}
         <a href="{{ page.permalink | safe }}" class="blog-link">
             <div class="blog-card">
@@ -35,14 +35,14 @@
                                 {{ page.date | date(format="%b %d, %Y") }}
                             {% endif %}
                         </span>
+                        {% if page.taxonomies.tags %}
+                        <div class="blog-tags">
+                            {% for tag in page.taxonomies.tags %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
-                    {% if page.taxonomies.tags %}
-                    <div class="blog-tags">
-                        {% for tag in page.taxonomies.tags %}
-                            <span class="tag">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
                 </div>
             </div>
         </a>
