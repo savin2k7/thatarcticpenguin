@@ -142,6 +142,31 @@ h1 {
     transition: color 0.3s;
 }
 
+.friend-banners {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.friend-banners a {
+    display: block;
+    height: 31px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.friend-banners a:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+.friend-banners img {
+    height: 100%;
+    width: auto;
+    display: block;
+    image-rendering: pixelated;
+}
+
 .blogs-list {
     display: flex;
     flex-direction: column;
