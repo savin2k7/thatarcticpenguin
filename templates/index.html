@@ -177,6 +177,23 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: max(1rem,min(2rem,3.5vw));
         }
+
+        @media (max-width: 768px) {
+            #heading {
+                font-size: 2.8rem;
+            }
+            #motto {
+                margin-top: -1.5rem;
+                font-size: 1.1rem;
+            }
+            .socials {
+                margin-top: 0.5rem;
+                gap: 1.2rem;
+            }
+            .socials i {
+                font-size: 24px;
+            }
+        }
     </style>
 
     </body>
@@ -368,21 +385,6 @@
     });</script>
     <!Scripts from game-of-life-canvas and stackoverflow>
 
-    <!--
-      🐧 something stirs beneath the surface.
-         you know your way around devtools.
-         but this server runs deeper than the browser.
-         try something a linux user would do first.
-    -->
-
-    <script>
-    console.log('%c🐧  thatarcticpenguin.github.io', 'color:#5bc8ff;font-family:monospace;font-size:15px;font-weight:bold;');
-    console.log('%c   you know your way around devtools.', 'color:#444;font-family:monospace;font-size:12px;');
-    console.log('%c   but this server runs deeper than the browser.', 'color:#444;font-family:monospace;font-size:12px;');
-    console.log('%c   try something a linux user would do first.', 'color:#3a7bd5;font-family:monospace;font-size:12px;');
-    </script>
-
-    <script src="easter-egg.js"></script>
 
     </body>
 </html>
