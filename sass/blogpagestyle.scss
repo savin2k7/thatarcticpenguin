@@ -152,6 +152,8 @@ h1 {
 .blog-link {
     text-decoration: none;
     color: inherit;
+    display: block;
+    margin-bottom: 1.5rem;
 }
 
 .blog-card {
@@ -305,16 +307,12 @@ h1 {
     }
 
     .blog-card {
-        flex-direction: column;
-        height: auto;
+        height: 120px;
     }
 
     .blog-image {
-        width: 100%;
-        min-width: unset;
-        height: 160px;
-        border-right: none;
-        border-bottom: 1px solid var(--card-border);
+        width: 120px;
+        min-width: 120px;
     }
 
     .blog-title {
