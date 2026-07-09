@@ -371,6 +371,25 @@ h1 {
     }
 }
 
+.built-with {
+    position: fixed;
+    bottom: 1rem;
+    right: 1.5rem;
+    color: var(--meta-color);
+    font-size: 0.7rem;
+    z-index: 10;
+}
+
+.built-with a {
+    color: var(--subtitle-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.built-with a:hover {
+    color: var(--h1-color);
+}
+
 #snow {
     position: fixed;
     top: 0;
