@@ -22,7 +22,7 @@ jobs:
       - name: Build Zola site and upload artifact
         uses: getzola/github-pages@v1
         with:
-          zola_version: '0.19.2'
+          zola_version: 'v0.19.2'
           build_flags: "--config zola.toml"
 
   deploy:
