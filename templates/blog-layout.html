@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="{{ get_url(path='bloginnerstyle.css') }}">
+    <script src="{{ get_url(path="js/theme.js") }}"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><a href="{{ get_url(path='/') }}">penguin</a></div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"></button>
+        </header>
+        <a href="{{ get_url(path='blog/') }}" class="back-link">Back</a>
+        <article>
+            {% block content %} {% endblock content %}
+        </article>
+    </div>
+    <script>
+        function copyCode(btn) {
+            const codeBlock = btn.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = 'copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
