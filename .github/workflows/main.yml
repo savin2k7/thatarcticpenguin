@@ -1,7 +1,7 @@
 name: Deploy Zola site to Pages
 on:
   push:
-    branches: ["main"] # Replace with your default branch name
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -16,9 +16,9 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Build Zola site
-        uses: getzola/github-pages@v1 # Official Zola action
+        uses: getzola/github-pages@v1
         with:
-          zola_version: 0.19.2 # Specify your Zola version
+          zola_version: v0.19.2
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

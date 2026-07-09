@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ get_url(path='blogpagestyle.css') }}">
 
-    <!-- 1. FLASH PREVENTION: Runs immediately before the DOM renders -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -49,14 +48,12 @@
         </div>
     </section>
 
-    <!-- 2. CLICK INTERACTION: Handles theme swapping toggles -->
     <script>
         document.getElementById('theme-toggle').addEventListener('click', () => {
             // Check current status
             const isDark = document.documentElement.classList.contains('dark');
             const newTheme = isDark ? 'light' : 'dark';
             
-            // Toggle HTML attributes and classes
             document.documentElement.setAttribute('data-theme', newTheme);
             if (newTheme === 'dark') {
                 document.documentElement.classList.add('dark');
@@ -64,7 +61,6 @@
                 document.documentElement.classList.remove('dark');
             }
             
-            // Update local storage so it persists across pages
             localStorage.setItem('theme', newTheme);
         });
     </script>
