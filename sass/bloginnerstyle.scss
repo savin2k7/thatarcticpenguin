@@ -5,7 +5,6 @@
 }
 
 :root {
-    /* Sizing & typography variables from the user */
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
     --text-sm: .875rem;
@@ -119,7 +118,10 @@ html[data-theme="light"] {
 body {
     background: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
     line-height: 1.6;
     padding: 20px;
 }
