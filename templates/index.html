@@ -1,404 +1,296 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html> 
-<html lang="en"> 
-    <head> <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="That Arctic Penguin (thatarcticpenguin) is the personal site of Sabareesh Vinodh">
-        <meta name="keywords" content="thatarcticpenguin, Sabareesh Vinodh, developer, portfolio">
-        <meta name="author" content="Sabareesh Vinodh">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" href="https://thatarcticpenguin.is-a.dev/">
-        <meta property="og:title" content="That Arctic Penguin — Sabareesh Vinodh">
-        <meta property="og:description" content="Personal site of Sabareesh Vinodh. A person who loves icecream, penguins, and coding.">
-        <meta property="og:url" content="https://thatarcticpenguin.is-a.dev/">
-        <meta property="og:type" content="profile">
-        <meta name="twitter:card" content="summary_large_image">
-        <title>That Arctic Penguin - Sabareesh Vinodh | Developer</title> 
-        <link rel="stylesheet" href="">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="icon" type="image/png" href="favicon.ico"/>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist+Pixel&family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Sabareesh Vinodh",
-        "alternateName": "That Arctic Penguin",
-        "identifier": "thatarcticpenguin",
-        "url": "https://thatarcticpenguin.is-a.dev/",
-        "description": "Developer, ice cream enthusiast, and penguin lover. This is the personal site of Sabareesh Vinodh.",
-        "sameAs": [
-            "https://github.com/thatarcticpenguin",
-            "https://x.com/SabareeshVinodh",
-            "https://www.instagram.com/sa.vi.07/",
-            "https://www.linkedin.com/in/sabareesh-v-35593736b/"
-            "https://www.kaggle.com/thatarcticpenguin"
-        ]
-        }
-        </script>
-
-    </head>
-    <body>
-        <div class="hero">
-            <h1 id="heading">That Arctic Penguin</h1>
-            <p id="motto">Ice cream?</p>
-            <script>
-                (function() {
-                    const mottos = [
-                        "ice cream?",
-                        "too cold for you",
-                        "0 kelvin coder",
-                        "pushing to localhost",
-                        "but why?",
-                        "call me emperor peng"
-                    ];
-                    const randomMotto = mottos[Math.floor(Math.random() * mottos.length)];
-                    document.getElementById('motto').textContent = randomMotto;
-                })();
-            </script>
-            <nav class="socials">
-                <a href="https://github.com/thatarcticpenguin" aria-label="GitHub" id="github">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="discord.html">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-                <a href="https://x.com/SabareeshVinodh" aria-label="Twitter" id="twitter">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://www.instagram.com/sa.vi.07/" aria-label="Instagram" id="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/sabareesh-v-35593736b/">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="mailto:sabareeshvinodh458@gmail.com">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </a>
-                <a href="{{ get_url(path='blog/') }}">
-                    <i class="fa-solid fa-pen-clip"></i>
-                </a>
-            </nav>
+{% block content %}
+    <div class="profile-container">
+        <div class="profile-pic">
+            <img src="{{ get_url(path='penguin.png') }}" alt="Penguin Profile Picture">
         </div>
+
+        <nav class="socials">
+            <a href="{{ get_url(path='blog/') }}">
+                <i class="fa-solid fa-pen-clip"></i>
+            </a>
+            <a href="mailto:sabareeshvinodh458@gmail.com">
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sabareesh-v-35593736b/">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/sa.vi.07/" aria-label="Instagram" id="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://x.com/SabareeshVinodh" aria-label="Twitter" id="twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="discord.html">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://github.com/thatarcticpenguin" aria-label="GitHub" id="github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </nav>
+
+        <img src="{{ get_url(path='banner.png') }}" class="homepage-banner" alt="Penguin Banner">
+    </div>
+
+    <div class="homepage-copy">
+        <h1 class="homepage-title">That Arctic Penguin</h1>
+        <p class="homepage-subtext">Hey, I'm Penguin. <br><br>
+        I'm a Computer Science undergraduate at AVV Amaravati who enjoys building things, and also doing something the modern age calls "tinkering". <br><br>
+        Welcome to my website, I am aiming to dive deep into the rabbit hole of how things work behind the sheet, 
+        and dive more into OSs, system design, and other stuff. <br><br>
+        Outside of coding, i am learning editing, colorgrading, and photography. Also trynna check off my mangalists :D</p>
+        <iframe data-testid="embed-iframe" class="homepage-spotifyembed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3JM4kNreiFYrDOcfHedYuv?utm_source=generator&theme=0&si=77749ff689ff4d99" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
 
     <style>
         body {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: black;
-        }
-
-        .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.1rem;
-        transform: translateY(-12px);
-        z-index: 200;
-        }
-
-        .socials i {
-            font-size: 28px;
-            color: hsl(0, 0%, 78%);
-            text-shadow: 0 0 6px rgba(255,255,255,0.25);
-            transition: transform 0.2s ease, text-shadow 0.2s ease;
-        }
-        .socials a:hover i {
-        transform: translateY(-2px) scale(1.05);
-        color: #ffffff;
-        text-shadow:
-            0 0 8px rgba(255,255,255,0.6),
-            0 0 16px rgba(255,255,255,0.35),
-            0 0 32px rgba(255,255,255,0.15);
-        }
-        .socials {
-            margin-top: -2rem;
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            animation: none;
-            z-index: 100;
             position: relative;
-        }
-
-
-        .socials a {
-            color: #bdbdbd;
-            font-size: 1.3rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-            cursor: pointer;
-        }
-
-        .socials a:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        .socials a:hover i {
-        text-shadow: 0 0 8px rgba(255,255,255,0.25);
-        }
-
-        body {
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: black;
+            background: var(--bg-color);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        nav:not(.socials) {
+            position: absolute;
+            top: 1.4rem;
+            left: 1.6rem;
+            right: 1.6rem;
+            margin-bottom: 0;
+            z-index: 10;
         }
 
-        #heading {
-            z-index: 67;
-            color: white;
-            font-family: "Geist Mono", monospace;
-            font-optical-sizing: auto;
-            font-weight: bold;
-            font-style: normal;
-            font-size: min(7rem,12vw);
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.96rem;
+            z-index: 100;
+            position: relative;
+            margin-left: -800px;
+            margin-top: -16px;
         }
 
-        #motto {
-            margin-top: -6rem;
-            z-index: 45;
-            color: whitesmoke;
-            font-family: "Geist Pixel", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            font-variation-settings:
-                "ELSH" 0;
-            font-size: max(1rem,min(2rem,3.5vw));
+        .profile-pic {
+            width: 400px;
+            height: 400px;
+            max-width: 90vw;
+            max-height: 90vw;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        :root {
+            --social-icon-color: #737373;
+            --social-hover-color: #ffffff;
+        }
+
+        html[data-theme="light"] {
+            --social-icon-color: #737373;
+            --social-hover-color: #000000;
+        }
+
+        .socials {
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            display: block;
+        }
+
+        .socials a {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            left: -18px;
+            top: -18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .socials a i {
+            font-size: 19px;
+            color: var(--social-icon-color);
+            transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        /* Curving along the bottom part of the 500px circular profile (radius 250px + ~40px padding = 290px translation) */
+        .socials a:nth-child(1) { transform: rotate(-45deg) translateY(232px) rotate(45deg); }
+        .socials a:nth-child(2) { transform: rotate(-30deg) translateY(232px) rotate(30deg); }
+        .socials a:nth-child(3) { transform: rotate(-15deg) translateY(232px) rotate(15deg); }
+        .socials a:nth-child(4) { transform: rotate(0deg) translateY(232px) rotate(0deg); }
+        .socials a:nth-child(5) { transform: rotate(15deg) translateY(232px) rotate(-15deg); }
+        .socials a:nth-child(6) { transform: rotate(30deg) translateY(232px) rotate(-30deg); }
+        .socials a:nth-child(7) { transform: rotate(45deg) translateY(232px) rotate(-45deg); }
+
+        .socials a:hover i {
+            color: var(--social-hover-color);
+            transform: scale(1.15);
+        }
+
+        html[data-theme="dark"] .socials a:hover i {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .homepage-banner {
+            position: absolute;
+            top: -80px;
+            left: calc(100% + 64px);
+            width: 544px;
+            height: auto;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .homepage-copy {
+            position: absolute;
+            top: calc(50vh - 160px);
+            left: calc(50vw - 136px);
+            right: 176px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            z-index: 5;
+        }
+
+        .homepage-title {
+            white-space: nowrap;
+            font-size: 3.6rem;
+            font-family: "Playfair Display", sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--h1-color);
+            margin: 0;
+            pointer-events: none;
+        }
+
+        .homepage-subtext {
+            font-size: 11px;
+            font-family: "Geist", sans-serif;
+            font-weight: 350;
+            padding-left: 8px;
+            letter-spacing: -0.02em;
+            line-height: 1.6;
+            color: var(--h1-color);
+            margin: 0;
+            pointer-events: none;
+            white-space: normal;
+        }
+
+        .homepage-spotifyembed {
+            width: 448px;
+            max-width: 100%;
+            border-radius: 10px;
+            padding-left: 8px;
+            min-height: 122px;
+            box-sizing: border-box;
+            pointer-events: auto;
         }
 
         @media (max-width: 768px) {
-            #heading {
-                font-size: 2.8rem;
+            body {
+                overflow: auto;
+                min-height: 100vh;
+                padding-bottom: 1.6rem;
             }
-            #motto {
-                margin-top: -1.5rem;
-                font-size: 1.1rem;
+            .profile-container {
+                flex-direction: column;
+                gap: 1.2rem;
+                margin-left: 0;
+                margin-top: 0;
+            }
+            .profile-pic {
+                margin-left: 0;
             }
             .socials {
-                margin-top: 0.5rem;
-                gap: 1.2rem;
+                position: static;
+                width: auto;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0.96rem;
+                margin-top: 0.8rem;
             }
-            .socials i {
-                font-size: 24px;
+            .socials a {
+                position: static;
+                width: auto;
+                height: auto;
+                transform: none !important;
+            }
+            .socials a i {
+                font-size: 18px;
+            }
+            .socials a:hover i {
+                transform: scale(1.1);
+            }
+            .homepage-banner {
+                position: static;
+                width: 90vw;
+                max-width: 360px;
+                margin: 1.6rem auto 0 auto;
+                display: block;
+            }
+            .homepage-copy {
+                position: static;
+                top: auto;
+                left: auto;
+                width: 100%;
+                padding: 0 0.8rem;
+            }
+            .homepage-title {
+                white-space: normal;
+                font-size: 2.4rem;
+            }
+            .homepage-subtext {
+                white-space: normal;
+            }
+            .homepage-spotifyembed {
+                position: static;
+                width: 100%;
+                margin-top: 0.8rem;
+                pointer-events: auto;
             }
         }
     </style>
 
-    </body>
-
-        
-        <script>document.addEventListener('DOMContentLoaded', function() {
-        if (window.innerWidth <= 1024) return;
-
-        const canvas = document.createElement('canvas');
-        canvas.id = 'game-of-life-canvas';
-        Object.assign(canvas.style, {
-            position: 'absolute',
-            top: '0px',
-            right: '0px',
-            zIndex: '1',
-            opacity: '0.35',
-        });
-        document.body.appendChild(canvas);
-
-        const ctx = canvas.getContext('2d');
-        const gridWidth = 300;
-        const gridHeight = 300;
-        const cellSize = 10;
-        canvas.width = gridWidth * cellSize;
-        canvas.height = gridHeight * cellSize;
-
-        const neighborOffsets = [
-            [-1, -1], [-1, 0], [-1, 1],
-            [0, -1],          [0, 1],
-            [1, -1],  [1, 0],  [1, 1]
-        ];
-
-        let deadColor, liveColor, gridLineColor, borderColor;
-
-        function updateThemeColors() {
-            const theme = "dark";
-            deadColor = theme === 'dark' ? '#000000' : '#f0f0f0';
-            liveColor = theme === 'dark' ? '#cccccc' : '#222222';
-            gridLineColor = theme === 'dark' ? '#222222' : '#e0e0e0';
-            borderColor = theme === 'dark' ? '#444444' : '#d0d0d0';
-            drawGrid(); // Immediate redraw with new colors
-        }
-
-        function initializeGrid() {
-            return Array.from({ length: gridHeight }, () =>
-                Array.from({ length: gridWidth }, () => Math.random() < 0.15 ? 1 : 0)
-            );
-        }
-
-        let grid = initializeGrid();
-
-        function getNextState(currentGrid) {
-            const newGrid = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(0));
-            for (let i = 0; i < gridHeight; i++) {
-                for (let j = 0; j < gridWidth; j++) {
-                    let liveNeighbors = 0;
-                    for (const [dx, dy] of neighborOffsets) {
-                        const ni = (i + dx + gridHeight) % gridHeight;
-                        const nj = (j + dy + gridWidth) % gridWidth;
-                        liveNeighbors += currentGrid[ni][nj];
-                    }
-                    if (currentGrid[i][j] === 1) {
-                        newGrid[i][j] = (liveNeighbors === 2 || liveNeighbors === 3) ? 1 : 0;
-                    } else {
-                        newGrid[i][j] = (liveNeighbors === 3) ? 1 : 0;
-                    }
-                }
-            }
-            return newGrid;
-        }
-
-        function areGridsEqual(gridA, gridB) {
-            for (let i = 0; i < gridHeight; i++) {
-                for (let j = 0; j < gridWidth; j++) {
-                    if (gridA[i][j] !== gridB[i][j]) return false;
-                }
-            }
-            return true;
-        }
-
-        function isGridDead(currentGrid) {
-            for (let i = 0; i < gridHeight; i++) {
-                for (let j = 0; j < gridWidth; j++) {
-                    if (currentGrid[i][j] === 1) return false;
-                }
-            }
-            return true;
-        }
-
-        function drawGrid() {
-            ctx.fillStyle = deadColor;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = liveColor;
-            for (let i = 0; i < gridHeight; i++) {
-                for (let j = 0; j < gridWidth; j++) {
-                    if (grid[i][j] === 1) {
-                        ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
-                    }
-                }
-            }
-
-            ctx.strokeStyle = gridLineColor;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            for (let x = 0; x <= canvas.width; x += cellSize) {
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, canvas.height);
-            }
-            for (let y = 0; y <= canvas.height; y += cellSize) {
-                ctx.moveTo(0, y);
-                ctx.lineTo(canvas.width, y);
-            }
-            ctx.stroke();
-
-            ctx.strokeStyle = borderColor;
-            ctx.strokeRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function updateSimulation() {
-            const nextGrid = getNextState(grid);
-            if (areGridsEqual(grid, nextGrid) || 
-                isGridDead(nextGrid) || 
-                areGridsEqual(nextGrid, getNextState(nextGrid))) {
-                grid = initializeGrid();
-            } else {
-                grid = nextGrid;
-            }
-        }
-
-        let lastUpdateTime = performance.now();
-        let animationId;
-
-        function gameLoop(currentTime) {
-            if (currentTime - lastUpdateTime >= 600) {
-                updateSimulation();
-                lastUpdateTime = currentTime;
-            }
-            drawGrid();
-            animationId = requestAnimationFrame(gameLoop);
-        }
-
-        animationId = requestAnimationFrame(gameLoop);
-
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 1024) {
-                canvas.style.display = 'none';
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
-            } else if (canvas.style.display === 'none') {
-                canvas.style.display = 'block';
-                lastUpdateTime = performance.now();
-                animationId = requestAnimationFrame(gameLoop);
-            }
-        });
-
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.attributeName === 'data-theme') {
-                    updateThemeColors();
-                }
-            });
-        });
-
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['data-theme']
-        });
-
-        updateThemeColors();
-
+    <script>
         const setFavicon = (emoji) => {
-        const canvas = document.createElement('canvas');
-        canvas.height = 32;
-        canvas.width = 32;
+            const canvas = document.createElement('canvas');
+            canvas.height = 32;
+            canvas.width = 32;
 
-        const ctx = canvas.getContext('2d');
-        ctx.font = '28px serif';
-        ctx.fillText(emoji, -2, 24);
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.fillText(emoji, -2, 24);
 
-        const favicon = document.querySelector('link[rel=icon]');
-        if (favicon) { favicon.href = canvas.toDataURL(); }
-        }
+            const favicon = document.querySelector('link[rel=icon]');
+            if (favicon) { favicon.href = canvas.toDataURL(); }
+        };
 
         setFavicon('🐧');
-
-    });</script>
-    <!Scripts from game-of-life-canvas and stackoverflow>
-
-
-    </body>
-</html>
+    </script>
+{% endblock %}

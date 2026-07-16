@@ -3,12 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="That Arctic Penguin (thatarcticpenguin) is the personal site of Sabareesh Vinodh">
+    <meta name="keywords" content="thatarcticpenguin, Sabareesh Vinodh, developer, portfolio">
+    <meta name="author" content="Sabareesh Vinodh">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thatarcticpenguin.is-a.dev/">
+    <meta property="og:title" content="That Arctic Penguin — Sabareesh Vinodh">
+    <meta property="og:description" content="Personal site of Sabareesh Vinodh. A person who loves icecream, penguins, and coding.">
+    <meta property="og:url" content="https://thatarcticpenguin.is-a.dev/">
+    <meta property="og:type" content="profile">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>That Arctic Penguin - Sabareesh Vinodh | Developer</title>
     <link rel="stylesheet" href="{{ get_url(path='blogpagestyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.ico"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist+Pixel&family=Geist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sabareesh Vinodh",
+        "alternateName": "That Arctic Penguin",
+        "identifier": "thatarcticpenguin",
+        "url": "https://thatarcticpenguin.is-a.dev/",
+        "description": "Developer, ice cream enthusiast, and penguin lover. This is the personal site of Sabareesh Vinodh.",
+        "sameAs": [
+            "https://github.com/thatarcticpenguin",
+            "https://x.com/SabareeshVinodh",
+            "https://www.instagram.com/sa.vi.07/",
+            "https://www.linkedin.com/in/sabareesh-v-35593736b/",
+            "https://www.kaggle.com/thatarcticpenguin"
+        ]
+    }
+    </script>
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -22,50 +54,190 @@
     </script>
 </head>
 <body>
+    <canvas id="snow"></canvas>
     <nav>
         <a href="/">Penguin</a>
-        <a href="../blog/">/blogs</a>
-        <button class="theme-toggle" id="theme-toggle" data-no-transition="true" aria-label="Switch to dark mode">
-            <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="solar-switch">
-                <g class="sun-icon">
-                    <path d="M12.4058 17.7625C15.1672 17.7625 17.4058 15.5239 17.4058 12.7625C17.4058 10.0011 15.1672 7.76251 12.4058 7.76251C9.64434 7.76251 7.40576 10.0011 7.40576 12.7625C7.40576 15.5239 9.64434 17.7625 12.4058 17.7625Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M12.4058 1.76251V3.76251" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M12.4058 21.7625V23.7625" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M4.62598 4.98248L6.04598 6.40248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M18.7656 19.1225L20.1856 20.5425" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M1.40576 12.7625H3.40576" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M21.4058 12.7625H23.4058" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M4.62598 20.5425L6.04598 19.1225" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                    <path d="M18.7656 6.40248L20.1856 4.98248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                </g>
-                <g class="moon-icon">
-                    <path d="M21.1918 13.2013C21.0345 14.9035 20.3957 16.5257 19.35 17.8781C18.3044 19.2305 16.8953 20.2571 15.2875 20.8379C13.6797 21.4186 11.9398 21.5294 10.2713 21.1574C8.60281 20.7854 7.07479 19.9459 5.86602 18.7371C4.65725 17.5283 3.81774 16.0003 3.4457 14.3318C3.07367 12.6633 3.18451 10.9234 3.76526 9.31561C4.346 7.70783 5.37263 6.29868 6.72501 5.25307C8.07739 4.20746 9.69959 3.56862 11.4018 3.41132C10.4052 4.75958 9.92564 6.42077 10.0503 8.09273C10.175 9.76469 10.8957 11.3364 12.0812 12.5219C13.2667 13.7075 14.8384 14.4281 16.5104 14.5528C18.1823 14.6775 19.8435 14.1979 21.1918 13.2013Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
-                </g>
-            </svg>
-        </button>
-    </nav>
-    
-    <section class="section">
-        <div class="container">
-            {% block content %} {% endblock content %}
+        <div class="right">
+            <a href="/blog">Blogs</a>
+            <a href="/garden">Garden</a>
+            <a href="/88x31">88x31</a>
+            <button class="theme-toggle" id="theme-toggle" data-no-transition="true" aria-label="Switch to dark mode">
+                <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="solar-switch">
+                    <g class="sun-icon">
+                        <path d="M12.4058 17.7625C15.1672 17.7625 17.4058 15.5239 17.4058 12.7625C17.4058 10.0011 15.1672 7.76251 12.4058 7.76251C9.64434 7.76251 7.40576 10.0011 7.40576 12.7625C7.40576 15.5239 9.64434 17.7625 12.4058 17.7625Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M12.4058 1.76251V3.76251" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M12.4058 21.7625V23.7625" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M4.62598 4.98248L6.04598 6.40248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M18.7656 19.1225L20.1856 20.5425" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M1.40576 12.7625H3.40576" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M21.4058 12.7625H23.4058" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M4.62598 20.5425L6.04598 19.1225" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                        <path d="M18.7656 6.40248L20.1856 4.98248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                    </g>
+                    <g class="moon-icon">
+                        <path d="M21.1918 13.2013C21.0345 14.9035 20.3957 16.5257 19.35 17.8781C18.3044 19.2305 16.8953 20.2571 15.2875 20.8379C13.6797 21.4186 11.9398 21.5294 10.2713 21.1574C8.60281 20.7854 7.07479 19.9459 5.86602 18.7371C4.65725 17.5283 3.81774 16.0003 3.4457 14.3318C3.07367 12.6633 3.18451 10.9234 3.76526 9.31561C4.346 7.70783 5.37263 6.29868 6.72501 5.25307C8.07739 4.20746 9.69959 3.56862 11.4018 3.41132C10.4052 4.75958 9.92564 6.42077 10.0503 8.09273C10.175 9.76469 10.8957 11.3364 12.0812 12.5219C13.2667 13.7075 14.8384 14.4281 16.5104 14.5528C18.1823 14.6775 19.8435 14.1979 21.1918 13.2013Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+                    </g>
+                </svg>
+            </button>
         </div>
-    </section>
+    </nav>
+
+    {% block content %}{% endblock %}
 
     <script>
         document.getElementById('theme-toggle').addEventListener('click', () => {
-            // Check current status
             const isDark = document.documentElement.classList.contains('dark');
             const newTheme = isDark ? 'light' : 'dark';
-            
+
             document.documentElement.setAttribute('data-theme', newTheme);
             if (newTheme === 'dark') {
                 document.documentElement.classList.add('dark');
             } else {
                 document.documentElement.classList.remove('dark');
             }
-            
+
             localStorage.setItem('theme', newTheme);
         });
+    </script>
+
+    <script>
+        const canvas = document.getElementById("snow");
+        const ctx = canvas.getContext("2d");
+
+        let width, height;
+        let snowflakes = [];
+
+        const svgTemplates = [
+            // 6-pointed snowflake
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path fill="{color}" d="M50,10 L55,45 L50,50 L45,45 Z M50,90 L55,55 L50,50 L45,55 Z M10,50 L45,55 L50,50 L45,45 Z M90,50 L55,55 L50,50 L55,45 Z M25,25 L45,45 L50,40 L40,30 Z M75,75 L55,55 L50,60 L60,70 Z M75,25 L55,45 L60,50 L70,40 Z M25,75 L45,55 L40,50 L30,60 Z"/>
+                <circle cx="50" cy="50" r="8" fill="{color}"/>
+            </svg>`,
+            // 8-pointed star snowflake
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <g fill="{color}">
+                    <rect x="47" y="5" width="6" height="90" rx="2"/>
+                    <rect x="5" y="47" width="90" height="6" rx="2"/>
+                    <rect x="47" y="5" width="6" height="90" rx="2" transform="rotate(45 50 50)"/>
+                    <rect x="47" y="5" width="6" height="90" rx="2" transform="rotate(-45 50 50)"/>
+                    <circle cx="50" cy="50" r="10" fill="{color}"/>
+                </g>
+            </svg>`,
+            // Discord snowflake
+            `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <symbol id="discord" viewBox="0 0 24 24">
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </symbol>
+                </defs>
+                <!-- snowflake arms -->
+                <line x1="100" y1="100" x2="150" y2="100" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="100" y1="100" x2="125" y2="143.3" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="100" y1="100" x2="75" y2="143.3" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="100" y1="100" x2="50" y2="100" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="100" y1="100" x2="75" y2="56.7" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="100" y1="100" x2="125" y2="56.7" stroke="{color}" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- circle mask -->
+                <mask id="logoMask">
+                    <rect width="200" height="200" fill="white"/>
+                    <circle cx="150" cy="100" r="18" fill="black"/>
+                    <circle cx="125" cy="143.3" r="18" fill="black"/>
+                    <circle cx="75" cy="143.3" r="18" fill="black"/>
+                    <circle cx="50" cy="100" r="18" fill="black"/>
+                    <circle cx="75" cy="56.7" r="18" fill="black"/>
+                    <circle cx="125" cy="56.7" r="18" fill="black"/>
+                </mask>
+                <!-- circle behind all elements -->
+                <circle cx="100" cy="100" r="50" stroke="{color}" stroke-width="1.5" fill="none" stroke-linecap="round" mask="url(#logoMask)" />
+                <use href="#discord" fill="{color}" x="135" y="85" width="30" height="30" transform="rotate(90, 150, 100)"/>
+                <use href="#discord" fill="{color}" x="110" y="128.3" width="30" height="30" transform="rotate(150, 125, 143.3)"/>
+                <use href="#discord" fill="{color}" x="60" y="128.3" width="30" height="30" transform="rotate(210, 75, 143.3)"/>
+                <use href="#discord" fill="{color}" x="35" y="85" width="30" height="30" transform="rotate(270, 50, 100)"/>
+                <use href="#discord" fill="{color}" x="60" y="41.7" width="30" height="30" transform="rotate(330, 75, 56.7)"/>
+                <use href="#discord" fill="{color}" x="110" y="41.7" width="30" height="30" transform="rotate(30, 125, 56.7)"/>
+            </svg>`
+        ];
+
+        let images = [];
+        let lastColor = null;
+
+        function loadImages(color) {
+            images = svgTemplates.map(template => {
+                const svgString = template.replace(/{color}/g, color);
+                const img = new Image();
+                img.src = "data:image/svg+xml," + encodeURIComponent(svgString);
+                return img;
+            });
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        function createSnowflakes(count = 100) {
+            snowflakes = [];
+            for (let i = 0; i < count; i++) {
+                snowflakes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 12 + 8, // 8px to 20px
+                    speedY: Math.random() * 1.5 + 1, // 1px to 2.5px (equivalent to 50 speed in Vencord)
+                    speedX: Math.random() * 1 - 0.5,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 2 - 1,
+                    imageIndex: Math.floor(Math.random() * svgTemplates.length)
+                });
+            }
+        }
+        createSnowflakes();
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            
+            const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const color = theme === 'dark' ? "rgba(255, 255, 255, 0.85)" : "rgba(100, 100, 100, 0.65)";
+            
+            if (color !== lastColor) {
+                loadImages(color);
+                lastColor = color;
+            }
+
+            for (let flake of snowflakes) {
+                if (images[flake.imageIndex] && images[flake.imageIndex].complete) {
+                    ctx.save();
+                    ctx.translate(flake.x, flake.y);
+                    ctx.rotate(flake.rotation * Math.PI / 180);
+                    ctx.drawImage(images[flake.imageIndex], -flake.size / 2, -flake.size / 2, flake.size, flake.size);
+                    ctx.restore();
+                }
+            }
+            move();
+        }
+
+        function move() {
+            for (let flake of snowflakes) {
+                flake.y += flake.speedY;
+                flake.x += flake.speedX + Math.sin(flake.y * 0.01) * 0.4;
+                flake.rotation += flake.rotationSpeed;
+
+                if (flake.y > height + 20) {
+                    flake.y = -20;
+                    flake.x = Math.random() * width;
+                    flake.size = Math.random() * 12 + 8;
+                    flake.speedY = Math.random() * 1.5 + 1;
+                    flake.imageIndex = Math.floor(Math.random() * svgTemplates.length);
+                }
+            }
+        }
+
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>

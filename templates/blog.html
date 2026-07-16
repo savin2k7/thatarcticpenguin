@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<canvas id="snow"></canvas>
+
 
 <div class="container">
 
@@ -9,19 +9,12 @@
     <p class="friend-banners-label">friends webring</p>
     <div class="friend-banners">
         <a href="https://namishh.com" target="_blank" rel="noopener"><img src="https://namishh.com/static/images/button_nam.png" alt="namishh"></a>
-        <a href="https://thatarcticpenguin.is-a.dev" target="_blank" rel="noopener"><img src="https://media.discordapp.net/attachments/1209511960551489618/1524464991116202014/pixelpal_3.jpg?ex=6a5080e9&is=6a4f2f69&hm=f0548a18716ca4b3be93fe4ca4e9181e6a975bd69b4767e17495914fbae8a9a9&=&format=webp" alt="friend"></a>
+        <a href="https://thatarcticpenguin.is-a.dev" target="_blank" rel="noopener"><img src="{{ get_url(path='tap_banner.png') }}" alt="friend"></a>
     </div>
     <div class="blogs-list">
         {% for page in section.pages %}
         <a href="{{ page.permalink | safe }}" class="blog-link">
             <div class="blog-card">
-                <div class="blog-image">
-                    {% if page.extra.image %}
-                        <img src="{{ page.extra.image }}" alt="{{ page.title }}">
-                    {% else %}
-                        <img src="https://support.heberjahiz.com/hc/article_attachments/21013076295570" alt="{{ page.title }}">
-                    {% endif %}
-                </div>
                 <div class="blog-content">
                     <div class="blog-title">
                         <span class="bullet">•</span>{{ page.title }}
@@ -54,67 +47,7 @@
     </div>
 </div>
 
-<script>
 
-    const canvas = document.getElementById("snow");
-    const ctx = canvas.getContext("2d");
-
-    let width, height;
-    let snowflakes = [];
-
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    function createSnowflakes(count = 120) {
-        snowflakes = [];
-        for (let i = 0; i < count; i++) {
-            snowflakes.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                r: Math.random() * 2 + 0.5,   // tiny circles
-                d: Math.random() * 1 + 0.5    // fall speed
-            });
-        }
-    }
-    createSnowflakes();
-
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-        ctx.fillStyle = theme === 'dark' ? "rgba(255, 255, 255, 0.9)" : "rgba(100, 100, 100, 0.5)";
-        ctx.beginPath();
-
-        for (let flake of snowflakes) {
-            ctx.moveTo(flake.x, flake.y);
-            ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
-        }
-
-        ctx.fill();
-        move();
-    }
-
-    function move() {
-        for (let flake of snowflakes) {
-            flake.y += flake.d;
-            flake.x += Math.sin(flake.y * 0.01) * 0.3;
-
-            if (flake.y > height) {
-                flake.y = -5;
-                flake.x = Math.random() * width;
-            }
-        }
-    }
-
-    function animate() {
-        draw();
-        requestAnimationFrame(animate);
-    }
-    animate();
-</script>
 
 <p class="built-with">built with <a href="https://www.getzola.org/" target="_blank" rel="noopener">zola</a></p>
 {% endblock content %}
