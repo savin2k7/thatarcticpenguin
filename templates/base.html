@@ -21,8 +21,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist+Pixel&family=Geist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist+Pixel&family=Geist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css" rel="stylesheet">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -43,11 +45,13 @@
     </script>
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
+            const savedTheme = localStorage.getItem('theme');
+            
             if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
                 document.documentElement.classList.add('dark');
             } else {
+                document.documentElement.setAttribute('data-theme', 'light');
                 document.documentElement.classList.remove('dark');
             }
         })();
@@ -56,11 +60,13 @@
 <body>
     <canvas id="snow"></canvas>
     <nav>
-        <a href="/">Penguin</a>
+        <a href="/" class="penguin-logo">&gt; Penguin</a>
         <div class="right">
-            <a href="/blog">Blogs</a>
-            <a href="/garden">Garden</a>
-            <a href="/88x31">88x31</a>
+            <div class="desktop-links">
+                <a href="/blog">Blogs</a>
+                <a href="/garden">Garden</a>
+                <a href="/88x31">88x31</a>
+            </div>
             <button class="theme-toggle" id="theme-toggle" data-no-transition="true" aria-label="Switch to dark mode">
                 <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="solar-switch">
                     <g class="sun-icon">
@@ -79,8 +85,20 @@
                     </g>
                 </svg>
             </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line class="line1" x1="4" y1="6" x2="20" y2="6"></line>
+                    <line class="line2" x1="4" y1="12" x2="20" y2="12"></line>
+                    <line class="line3" x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </nav>
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <a href="/blog">Blogs</a>
+        <a href="/garden">Garden</a>
+        <a href="/88x31">88x31</a>
+    </div>
 
     {% block content %}{% endblock %}
 
@@ -177,14 +195,16 @@
         window.addEventListener("resize", resize);
         resize();
 
-        function createSnowflakes(count = 100) {
+        function createSnowflakes() {
+            // Heavily reduce count on mobile for performance
+            const count = window.innerWidth < 768 ? 30 : 100;
             snowflakes = [];
             for (let i = 0; i < count; i++) {
                 snowflakes.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    size: Math.random() * 12 + 8, // 8px to 20px
-                    speedY: Math.random() * 1.5 + 1, // 1px to 2.5px (equivalent to 50 speed in Vencord)
+                    size: Math.random() * 12 + 8,
+                    speedY: Math.random() * 1.5 + 1,
                     speedX: Math.random() * 1 - 0.5,
                     rotation: Math.random() * 360,
                     rotationSpeed: Math.random() * 2 - 1,
@@ -194,15 +214,25 @@
         }
         createSnowflakes();
 
+        let currentThemeColor = document.documentElement.getAttribute('data-theme') === 'light' ? "rgba(100, 100, 100, 0.65)" : "rgba(255, 255, 255, 0.85)";
+
+        // Observe theme changes instead of checking every frame
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'data-theme') {
+                    const theme = document.documentElement.getAttribute('data-theme');
+                    currentThemeColor = theme === 'light' ? "rgba(100, 100, 100, 0.65)" : "rgba(255, 255, 255, 0.85)";
+                }
+            });
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
         function draw() {
             ctx.clearRect(0, 0, width, height);
             
-            const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-            const color = theme === 'dark' ? "rgba(255, 255, 255, 0.85)" : "rgba(100, 100, 100, 0.65)";
-            
-            if (color !== lastColor) {
-                loadImages(color);
-                lastColor = color;
+            if (currentThemeColor !== lastColor) {
+                loadImages(currentThemeColor);
+                lastColor = currentThemeColor;
             }
 
             for (let flake of snowflakes) {
@@ -238,6 +268,10 @@
             requestAnimationFrame(animate);
         }
         animate();
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu-btn').classList.toggle('open');
+            document.getElementById('mobile-menu-overlay').classList.toggle('open');
+        });
     </script>
 </body>
 </html>

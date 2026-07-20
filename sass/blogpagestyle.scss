@@ -127,29 +127,192 @@ nav a:hover {
     color: var(--h1-color);
 }
 
-.theme-toggle {
-    margin-left: auto;
+.penguin-logo {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--h1-color);
+    letter-spacing: 0.5px;
+}
+
+.desktop-links {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.mobile-menu-btn {
+    display: none;
     background: none;
     border: none;
+    padding: 0;
+    margin-left: 12px;
+    cursor: pointer;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+    z-index: 101;
+    position: relative;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--h1-color);
+}
+
+.mobile-menu-btn svg {
+    display: block;
+}
+
+.mobile-menu-btn line {
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease-in-out;
+}
+
+.mobile-menu-btn.open .line1 {
+    transform-origin: top right;
+    transform: translate(-2.35px, 0.35px) rotate(-45deg);
+}
+.mobile-menu-btn.open .line2 {
+    opacity: 0;
+}
+.mobile-menu-btn.open .line3 {
+    transform-origin: bottom right;
+    transform: translate(-2.35px, -0.35px) rotate(45deg);
+}
+
+.mobile-menu-overlay {
+    position: absolute;
+    top: 4.5rem;
+    right: 1.6rem;
+    left: auto;
+    width: auto;
+    min-width: 160px;
+    height: auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.mobile-menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-menu-overlay a {
+    color: var(--subtitle-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-overlay a:hover {
+    color: var(--h1-color);
+}
+
+.theme-toggle {
+    margin-left: auto;
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    width: 52px;
+    height: 28px;
     cursor: pointer;
     color: var(--subtitle-color);
     display: flex;
     align-items: center;
-    justify-content: center;
     padding: 0;
-    padding-left: 12px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 101;
+    position: relative;
+}
+
+.theme-toggle::before {
+    content: "";
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background: var(--text-color);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+html[data-theme="light"] .theme-toggle::before {
+    transform: translateX(24px);
+}
+
+html[data-theme="dark"] .theme-toggle::before {
+    transform: translateX(0);
 }
 
 .theme-toggle:hover {
-    color: var(--h1-color);
-    background: none;
+    border-color: var(--card-hover-border);
 }
 
-.theme-toggle svg {
+.solar-switch {
     display: block;
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 5.5px;
+    left: 5.5px;
+    color: var(--bg-color);
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+html[data-theme="light"] .solar-switch {
+    transform: translateX(24px);
+}
+
+html[data-theme="dark"] .solar-switch {
+    transform: translateX(0);
+}
+
+.solar-switch path {
+    transform-origin: 12.5px 12.5px;
+    transform-box: view-box;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="light"] .sun-icon path {
+    transform: scale(0);
+    stroke-dashoffset: 1;
+    transition-delay: 0s, 0s;
+}
+
+html[data-theme="light"] .moon-icon path {
+    transform: scale(1);
+    stroke-dashoffset: 0;
+    transition-delay: 0s, 0.3s;
+}
+
+html[data-theme="dark"] .sun-icon path {
+    transform: scale(1);
+    stroke-dashoffset: 0;
+    transition-delay: 0s, 0.3s;
+}
+
+html[data-theme="dark"] .moon-icon path {
+    transform: scale(0);
+    stroke-dashoffset: 1;
+    transition-delay: 0s, 0s;
 }
 
 h1 {
@@ -321,6 +484,14 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .desktop-links {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
     body {
         padding: 0.8rem;
     }
