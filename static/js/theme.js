@@ -46,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (newTheme === 'dark') {
+            const isBlogPage = !!document.querySelector('link[href*="bloginnerstyle.css"]');
+
+            if (newTheme === 'dark' && isBlogPage) {
                 const timestamp = Date.now();
                 const maskUrl = `/bad-apple-mask-full.gif?t=${timestamp}`;
                 const img = new Image();

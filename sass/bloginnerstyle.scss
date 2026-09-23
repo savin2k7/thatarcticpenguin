@@ -454,12 +454,12 @@ html[data-theme="dark"]::view-transition-old(root) {
         mask-size: 0;
     }
     8% {
-        -webkit-mask-size: 32vmax;
-        mask-size: 32vmax;
+        -webkit-mask-size: 28vmax;
+        mask-size: 28vmax;
     }
     73% {
-        -webkit-mask-size: 32vmax;
-        mask-size: 32vmax;
+        -webkit-mask-size: 28vmax;
+        mask-size: 28vmax;
     }
     100% {
         -webkit-mask-size: 2000vmax;
