@@ -46,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const isBlogPage = !!document.querySelector('link[href*="bloginnerstyle.css"]');
-
-            if (newTheme === 'dark' && isBlogPage) {
+            if (newTheme === 'dark') {
                 const timestamp = Date.now();
                 const maskUrl = `/bad-apple-mask-full.gif?t=${timestamp}`;
                 const img = new Image();
@@ -74,6 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // ignore
             } finally {
                 document.documentElement.classList.remove('theme-toggled');
+                if (typeof refreshThresholdImages === "function") {
+                    try {
+                        await refreshThresholdImages();
+                    } catch (e) {}
+                }
             }
         })();
     });
@@ -90,14 +93,6 @@ async function setTheme(newTheme) {
 
     localStorage.setItem('theme', newTheme);
     updateToggleUI();
-
-    if (typeof refreshThresholdImages === "function") {
-        try {
-            await refreshThresholdImages();
-        } catch (e) {
-            // ignore
-        }
-    }
 }
 
 function updateToggleUI() {

@@ -73,7 +73,7 @@
         0.6835 94.51%, 0.8316 97.34%, 1 100%
     );
     --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
-    --mask-gif-dance: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
+    --mask-gif-dance: url('/shigure-ui-dance.gif');
     --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
 }
 
@@ -395,18 +395,22 @@ html.theme-toggled *::after {
 }
 
 /* Switch from Dark to Light Mode (Dancing Girl GIF) */
-html[data-theme="light"]::view-transition-new(root) {
-    -webkit-mask: var(--current-mask-gif, var(--mask-gif-dance)) center / 0 no-repeat;
-    mask: var(--current-mask-gif, var(--mask-gif-dance)) center / 0 no-repeat;
+html.blogpage[data-theme="light"]::view-transition-new(root) {
+    -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-dance));
+    mask-image: var(--current-mask-gif, var(--mask-gif-dance));
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
     animation: scale-light 1.8s both;
 }
 
-html[data-theme="light"]::view-transition-old(root) {
+html.blogpage[data-theme="light"]::view-transition-old(root) {
     animation: old-exit-light 1.8s both;
 }
 
 /* Switch from Light to Dark Mode (Bad Apple GIF - original apple shape, 2.8s) */
-html[data-theme="dark"]::view-transition-new(root) {
+html.blogpage[data-theme="dark"]::view-transition-new(root) {
     -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
     mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
     -webkit-mask-position: center;
@@ -416,7 +420,7 @@ html[data-theme="dark"]::view-transition-new(root) {
     animation: scale-dark 2.8s both;
 }
 
-html[data-theme="dark"]::view-transition-old(root) {
+html.blogpage[data-theme="dark"]::view-transition-old(root) {
     animation: old-exit-dark 2.8s both;
 }
 

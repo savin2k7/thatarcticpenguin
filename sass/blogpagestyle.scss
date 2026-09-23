@@ -44,7 +44,7 @@
         0.6835 94.51%, 0.8316 97.34%, 1 100%
     );
     --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
-    --mask-gif-dance: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
+    --mask-gif-dance: url('/shigure-ui-dance.gif');
     --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
 }
 
@@ -596,7 +596,106 @@ h1 {
     view-transition-name: theme-toggle;
 }
 
+html.theme-toggled *,
+html.theme-toggled *::before,
+html.theme-toggled *::after {
+    transition: none !important;
+}
 
+::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    mix-blend-mode: normal;
+}
+
+/* Switch from Dark to Light Mode (Dancing Girl GIF) */
+html.blogpage[data-theme="light"]::view-transition-new(root) {
+    -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-dance));
+    mask-image: var(--current-mask-gif, var(--mask-gif-dance));
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: scale-light 1.8s both;
+}
+
+html.blogpage[data-theme="light"]::view-transition-old(root) {
+    animation: old-exit-light 1.8s both;
+}
+
+/* Switch from Light to Dark Mode (Bad Apple GIF - original apple shape, 2.8s) */
+html.blogpage[data-theme="dark"]::view-transition-new(root) {
+    -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
+    mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: scale-dark 2.8s both;
+}
+
+html.blogpage[data-theme="dark"]::view-transition-old(root) {
+    animation: old-exit-dark 2.8s both;
+}
+
+@keyframes scale-light {
+    0% {
+        -webkit-mask-size: 0;
+        mask-size: 0;
+    }
+    10% {
+        -webkit-mask-size: 50vmax;
+        mask-size: 50vmax;
+    }
+    85% {
+        -webkit-mask-size: 50vmax;
+        mask-size: 50vmax;
+    }
+    100% {
+        -webkit-mask-size: 2000vmax;
+        mask-size: 2000vmax;
+    }
+}
+
+@keyframes old-exit-light {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scale-dark {
+    0% {
+        -webkit-mask-size: 0;
+        mask-size: 0;
+    }
+    8% {
+        -webkit-mask-size: 28vmax;
+        mask-size: 28vmax;
+    }
+    73% {
+        -webkit-mask-size: 28vmax;
+        mask-size: 28vmax;
+    }
+    100% {
+        -webkit-mask-size: 2000vmax;
+        mask-size: 2000vmax;
+    }
+}
+
+@keyframes old-exit-dark {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 .solar-switch {
     display: block;
