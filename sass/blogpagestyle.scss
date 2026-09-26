@@ -405,7 +405,7 @@ h1 {
 }
 
 .friend-banners img {
-    height: auto;
+    height: 31px;
     width: 88px;
     display: block;
     image-rendering: pixelated;
@@ -567,7 +567,7 @@ h1 {
     bottom: 0.8rem;
     right: 1.2rem;
     color: var(--meta-color);
-    font-size: 0.56rem;
+    font-size: 0.64rem;
     z-index: 10;
 }
 
@@ -772,6 +772,14 @@ html[data-theme="dark"] .sun-icon path {
     object-fit: cover;
     display: block;
     background-color: var(--bg-color);
+}
+
+img.threshold-hover:not(.processed) {
+    opacity: 0;
+}
+
+img.threshold-hover.processed {
+    opacity: 1;
 }
 
 .threshold-hover-wrapper .original-hover {

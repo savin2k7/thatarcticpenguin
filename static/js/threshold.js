@@ -54,7 +54,8 @@ async function setupThresholdImages() {
         original.dataset.threshold = img.dataset.threshold || '20';
         wrapper.appendChild(original);
 
-        img.src = thresholdImage(original);
+        img.src = thresholdImage(img);
+        img.classList.add('processed');
 
         const rating = img.dataset.rating;
         if (rating) {
