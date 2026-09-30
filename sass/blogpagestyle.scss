@@ -868,11 +868,20 @@ img.threshold-hover.processed {
 }
 
 .guestbook-subtitle {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Geist Mono', monospace;
     color: var(--meta-color);
-    font-size: 1.1rem;
-    font-style: italic;
+    font-size: 0.85rem;
     margin-bottom: 1.5rem;
+    white-space: nowrap;
+    
+    a {
+        color: var(--meta-color);
+        text-decoration: underline;
+        
+        &:hover {
+            color: var(--h1-color);
+        }
+    }
 }
 
 /* HTMLCommentBox — full reset + Minima style */
