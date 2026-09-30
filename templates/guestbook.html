@@ -26,6 +26,16 @@
 </div>
 
 <script>
+(function() {
+    var _origAlert = window.alert;
+    window.alert = function(msg) {
+        if (msg && typeof msg === 'string' && /already liked/i.test(msg)) {
+            return;
+        }
+        return _origAlert.apply(this, arguments);
+    };
+})();
+
 (function cleanHCB() {
     var timer = setInterval(function() {
         var box = document.getElementById('HCB_comment_box');
