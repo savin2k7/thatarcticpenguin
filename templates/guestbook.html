@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="guestbook-page">
+    <h1 class="guestbook-title">Guestbook</h1>
+    <p class="guestbook-subtitle">Sign the guestbook and leave your legacy</p>
+    
+    <div id="comments-container">
+        <div id="HCB_comment_box">Loading...</div>
+        <script type="text/javascript" id="hcb">
+        if(!window.hcb_user){hcb_user={};}
+        hcb_user.comments_header = '';
+        hcb_user.submit = 'Sign Guestbook';
+        hcb_user.msg_thankyou = 'Thank you for leaving your mark!';
+        hcb_user.PAGE = "{{ get_url(path='guestbook') }}";
+        (function(){
+            var s = document.createElement("script");
+            var l = "{{ get_url(path='guestbook') }}";
+            var h = "https://www.htmlcommentbox.com";
+            s.setAttribute("type","text/javascript");
+            s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=17822&num=25");
+            if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
+        })();
+        </script>
+    </div>
+</div>
+
+<script>
+(function cleanHCB() {
+    var timer = setInterval(function() {
+        var box = document.getElementById('HCB_comment_box');
+        if (!box) return;
+        
+        // Hide "Add Image" file input and label
+        var fi = box.querySelector('#hcb_file');
+        if (fi) fi.style.display = 'none';
+        var fl = box.querySelector('#hcb_file_label');
+        if (fl) fl.style.display = 'none';
+        
+        // Hide promo & attribution
+        var hd = box.querySelectorAll('.home-desc, .hcb-link, .hcb-powered, .hcb-door-in, .hcb-door-out, .admin-link');
+        for (var i = 0; i < hd.length; i++) hd[i].style.display = 'none';
+        
+        // Hide RSS link and icon
+        var rssList = box.querySelectorAll('a[href*="rss"], img[src*="feed"], img[src*="rss"], img[alt*="rss"]');
+        for (var j = 0; j < rssList.length; j++) {
+            var el = rssList[j].closest('a') || rssList[j];
+            el.style.display = 'none';
+        }
+
+        // Ensure Website field placeholder
+        var webInput = box.querySelector('#hcb_form_website');
+        if (webInput && webInput.placeholder !== 'Website') {
+            webInput.placeholder = 'Website';
+        }
+
+        // Replace action buttons/links with inline SVGs
+        var svgs = {
+            'Like': '<svg class="action-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" stroke="currentColor" stroke-width="70" stroke-linecap="round" stroke-linejoin="round"><path d="M250 350v300c0 30 20 50 50 50h300c40 0 60-30 70-60l60-220c10-30 0-70-40-70H500v-100c0-60-30-100-80-100-30 0-50 20-50 50v150L250 350z"/><path d="M100 350h70v350h-70c-30 0-50-20-50-50V400c0-30 20-50 50-50z"/></svg>',
+            'Reply': '<svg class="action-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" stroke="currentColor" stroke-width="75" stroke-linecap="round" stroke-linejoin="round"><path d="M350 250L150 400L350 550"/><path d="M550 200c0 110-90 200-200 200"/></svg>',
+            'Flag': '<svg class="action-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" stroke="currentColor" stroke-width="70" stroke-linecap="round" stroke-linejoin="round"><path d="M200 650V150c0-25 20-45 45-45h10c100 0 180 40 300 40 80 0 120-20 120-20v300s-40 20-120 20c-120 0-200-40-300-40h-10c-25 0-45 20-45 45z"/></svg>'
+        };
+
+        var actionElements = box.querySelectorAll('.hcb-like, .hcb-reply, .hcb-flag, button, a');
+        for (var k = 0; k < actionElements.length; k++) {
+            var item = actionElements[k];
+            if (item.querySelector('svg.action-icon')) continue;
+            
+            var txt = (item.textContent || '').trim();
+            var href = item.getAttribute('href') || '';
+            var onclick = item.getAttribute('onclick') || '';
+            var cls = item.className || '';
+
+            if (cls.indexOf('hcb-like') !== -1 || /like/i.test(txt) || /like/i.test(href) || /like/i.test(onclick)) {
+                item.innerHTML = svgs['Like'];
+            } else if (cls.indexOf('hcb-reply') !== -1 || /reply/i.test(txt) || /reply/i.test(href) || /reply/i.test(onclick)) {
+                item.innerHTML = svgs['Reply'];
+            } else if (cls.indexOf('hcb-flag') !== -1 || /flag/i.test(txt) || /flag/i.test(href) || /flag/i.test(onclick)) {
+                item.innerHTML = svgs['Flag'];
+            }
+        }
+    }, 200);
+})();
+</script>
+{% endblock %}

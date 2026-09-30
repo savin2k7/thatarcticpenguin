@@ -850,3 +850,250 @@ img.threshold-hover.processed {
 .built-with {
     font-family: 'Geist', sans-serif;
 }
+/* ===== Guestbook Page ===== */
+
+.guestbook-page {
+    max-width: 600px;
+    padding: 1.25rem 0;
+    position: relative;
+    z-index: 5;
+}
+
+.guestbook-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--h1-color);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.guestbook-subtitle {
+    font-family: 'Playfair Display', serif;
+    color: var(--meta-color);
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+/* HTMLCommentBox — full reset + Minima style */
+#HCB_comment_box,
+#HCB_comment_box * {
+    font-family: 'Geist Mono', monospace !important;
+    box-sizing: border-box !important;
+}
+
+#HCB_comment_box {
+    color: var(--subtitle-color);
+    width: 100%;
+}
+
+#HCB_comment_box h3 {
+    display: none; /* Removed Legacy Log */
+}
+
+/* Form container */
+#HCB_comment_box form,
+#HCB_comment_box #hcb_form {
+    width: 100%;
+}
+
+/* All text inputs — force full width block display */
+#HCB_comment_box input[type="text"] {
+    display: block;
+    width: 100% !important;
+    background: var(--bg-color);
+    color: var(--h1-color);
+    border: 2px solid var(--tag-border);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.625rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#HCB_comment_box input[type="text"]:focus {
+    border-color: var(--h1-color);
+}
+
+/* Textarea wrapper + textarea */
+#HCB_comment_box .hcb-wrapper {
+    width: 100%;
+}
+
+#HCB_comment_box textarea {
+    display: block;
+    width: 100% !important;
+    min-height: 120px;
+    resize: vertical;
+    background: var(--bg-color);
+    color: var(--h1-color);
+    border: 2px solid var(--tag-border);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.625rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#HCB_comment_box textarea:focus {
+    border-color: var(--h1-color);
+}
+
+/* Submit button — Minima button-secondary */
+#HCB_comment_box .submit,
+#HCB_comment_box input[type="submit"],
+#HCB_comment_box #hcb_submit {
+    background-color: var(--h1-color);
+    color: var(--bg-color);
+    border: 1px solid var(--meta-color);
+    padding: 0.5rem 0.625rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+#HCB_comment_box .submit:hover,
+#HCB_comment_box input[type="submit"]:hover,
+#HCB_comment_box #hcb_submit:hover {
+    opacity: 0.85;
+}
+
+/* Hide all junk: Add Image, promo, RSS, admin links */
+#HCB_comment_box input[value="Add Image"],
+#HCB_comment_box input[value="add image"],
+#HCB_comment_box .inputfile,
+#HCB_comment_box #hcb_file,
+#HCB_comment_box #hcb_file_label,
+#HCB_comment_box .admin-link,
+#HCB_comment_box a[href*="rss"],
+#HCB_comment_box img[src*="feed"],
+#HCB_comment_box img[src*="rss"],
+#HCB_comment_box img[alt*="rss"],
+.hcb-link,
+.hcb-powered,
+.hcb-door-in,
+.hcb-door-out,
+.home-desc {
+    display: none !important;
+}
+
+/* Comments list */
+#HCB_comment_box .hcb-comment-box {
+    margin-top: 1.5rem;
+}
+
+#HCB_comment_box .hcb-comment {
+    background: transparent;
+    border-bottom: 1px solid var(--meta-color);
+    border-radius: 0;
+    padding: 0.625rem 0;
+    margin: 0;
+}
+
+#HCB_comment_box .hcb-comment .hcb-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+}
+
+#HCB_comment_box b.author,
+#HCB_comment_box .author-name {
+    color: var(--h1-color);
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+#HCB_comment_box .author-name a,
+#HCB_comment_box b.author a {
+    color: var(--h1-color) !important;
+    text-decoration: underline !important;
+    transition: opacity 0.2s ease;
+}
+
+#HCB_comment_box .author-name a:hover,
+#HCB_comment_box b.author a:hover {
+    opacity: 0.7;
+}
+
+#HCB_comment_box blockquote {
+    font-size: 0.875rem;
+    margin: 0.375rem 0 0 0;
+    padding: 0;
+    border: none;
+    color: var(--subtitle-color);
+}
+
+/* Like/Reply/Flag buttons & links */
+#HCB_comment_box button.hcb-like,
+#HCB_comment_box button.hcb-reply,
+#HCB_comment_box button.hcb-flag,
+#HCB_comment_box .hcb-comment button,
+#HCB_comment_box a {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 0.5rem 0 0 !important;
+    color: var(--meta-color) !important;
+    font-size: 0.75rem !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+}
+
+#HCB_comment_box button.hcb-like:hover,
+#HCB_comment_box button.hcb-reply:hover,
+#HCB_comment_box button.hcb-flag:hover,
+#HCB_comment_box .hcb-comment button:hover,
+#HCB_comment_box a:hover {
+    color: var(--h1-color) !important;
+}
+
+.action-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.85;
+    margin-right: 4px;
+    stroke: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#HCB_comment_box button:hover .action-icon,
+#HCB_comment_box a:hover .action-icon {
+    opacity: 1;
+}
+
+/* "No one has commented" text */
+#HCB_comment_box > div {
+    color: var(--meta-color);
+    font-size: 0.875rem;
+}
+
+/* Fade-only view transition for guestbook page */
+html.blogpage:has(.guestbook-page)::view-transition-new(root) {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    animation: guestbook-fade-in 0.3s ease both !important;
+}
+
+html.blogpage:has(.guestbook-page)::view-transition-old(root) {
+    animation: guestbook-fade-out 0.3s ease both !important;
+}
+
+@keyframes guestbook-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes guestbook-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
