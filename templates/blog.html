@@ -11,8 +11,13 @@
         <a href="https://thatarcticpenguin.is-a.dev" target="_blank" rel="noopener"><img src="{{ get_url(path='tap_banner.png') }}" alt="me"></a>
     </div>
 
+    <!-- Section 1: Posts -->
+    <h2 class="blog-section-title">> posts</h2>
     <div class="blogs-list">
+        {% set_global posts_count = 0 %}
         {% for page in section.pages %}
+        {% if not page.extra.section or page.extra.section == "posts" %}
+        {% set_global posts_count = posts_count + 1 %}
         <a href="{{ page.permalink | safe }}" class="blog-item-link">
             <div class="blog-item">
                 <div class="blog-item-header">
@@ -38,7 +43,44 @@
                 {% endif %}
             </div>
         </a>
+        {% endif %}
         {% endfor %}
+        {% if posts_count == 0 %}
+        <p class="blog-empty-msg">no posts yet :|</p>
+        {% endif %}
+    </div>
+
+    <!-- Section 2: Learnings -->
+    <h2 class="blog-section-title">> learnings</h2>
+    <div class="blogs-list">
+        {% set_global learnings_count = 0 %}
+        {% for page in section.pages %}
+        {% if page.extra.section == "learnings" %}
+        {% set_global learnings_count = learnings_count + 1 %}
+        <a href="{{ page.permalink | safe }}" class="blog-item-link">
+            <div class="blog-item">
+                <div class="blog-item-header">
+                    <span class="blog-item-title">{{ page.title }}</span>
+                    {% if page.extra.tags %}
+                    <span class="blog-item-tags">
+                        {% for tag in page.extra.tags %}
+                        <span class="blog-inline-tag">#{{ tag }}</span>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+                {% if page.extra.subtitle %}
+                <div class="blog-item-subtext">{{ page.extra.subtitle }}</div>
+                {% elif page.description %}
+                <div class="blog-item-subtext">{{ page.description }}</div>
+                {% endif %}
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+        {% if learnings_count == 0 %}
+        <p class="blog-empty-msg">nothing here yet | > . < | </p>
+        {% endif %}
     </div>
 </div>
 
