@@ -44,6 +44,9 @@ async function setupThresholdImages() {
 
         const wrapper = document.createElement('div');
         wrapper.className = 'threshold-hover-wrapper';
+        if (img.dataset.category) {
+            wrapper.dataset.category = img.dataset.category;
+        }
         img.parentElement.insertBefore(wrapper, img);
         wrapper.appendChild(img);
 
