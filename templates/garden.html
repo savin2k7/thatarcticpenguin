@@ -13,8 +13,8 @@
     </div>
 
     <div class="garden-grid">
-        <img src="/odyssey.jpg" width="220" height="350" data-threshold="25" data-rating="9.5/10" data-category="books" class="threshold-hover" alt="Odyssey Banner">
-        <img src="/projecthailmary.jpg" width="220" height="350" data-threshold="70" data-rating="9.6/10" data-category="books" class="threshold-hover" alt="Project Hail Mary Banner">
+        <img src="/odyssey.jpg" width="220" height="350" data-threshold="25" data-rating="9.5/10" data-category="movies" class="threshold-hover" alt="Odyssey Banner">
+        <img src="/projecthailmary.jpg" width="220" height="350" data-threshold="70" data-rating="9.6/10" data-category="movies" class="threshold-hover" alt="Project Hail Mary Banner">
         <img src="/avatarwayofwater.jpg" width="220" height="350" data-threshold="90" data-rating="8.2/10" data-category="movies" class="threshold-hover" alt="Avatar: The Way of Water Banner">
         <img src="/httyd.jpg" width="220" height="350" data-threshold="80" data-rating="9.4/10" data-category="movies" class="threshold-hover" alt="How to Train Your Dragon Banner">
         <img src="/f1themovie.jpg" width="220" height="350" data-threshold="200" data-rating="8.8/10" data-category="movies" class="threshold-hover" alt="F1 The Movie Banner">
@@ -29,11 +29,11 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.garden-filter-btn');
-    
+
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.dataset.filter.toLowerCase();
-            
+
             // Update active button state
             filterButtons.forEach(b => {
                 b.classList.remove('button-secondary');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             btn.classList.remove('button-primary');
             btn.classList.add('button-secondary');
-            
+
             // Show / hide garden grid elements
             const items = document.querySelectorAll('.garden-grid > *');
             items.forEach(item => {
