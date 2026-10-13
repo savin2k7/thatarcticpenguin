@@ -116,8 +116,6 @@
             width: 0;
             height: 0;
             display: block;
-            /* .socials is a <nav>, so it inherits the global nav padding and
-               background, which painted a ~51x45px page-colored box over the avatar */
             padding: 0;
             margin: 0;
             background: none;
@@ -160,8 +158,6 @@
 
         .homepage-banner {
             position: absolute;
-            /* anchor by the bottom edge so it always sits above the title,
-               regardless of image height or load timing */
             bottom: calc(100% - 28px);
             left: calc(100% + 64px);
             width: 544px;
@@ -360,20 +356,5 @@
         }
     </style>
 
-    <script>
-        const setFavicon = (emoji) => {
-            const canvas = document.createElement('canvas');
-            canvas.height = 32;
-            canvas.width = 32;
 
-            const ctx = canvas.getContext('2d');
-            ctx.font = '28px serif';
-            ctx.fillText(emoji, -2, 24);
-
-            const favicon = document.querySelector('link[rel=icon]');
-            if (favicon) { favicon.href = canvas.toDataURL(); }
-        };
-
-        setFavicon('🐧');
-    </script>
 {% endblock %}

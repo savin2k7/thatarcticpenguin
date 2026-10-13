@@ -2,28 +2,28 @@
 title = "Odyssey Banner"
 image = "odyssey.jpg"
 category = "movies"
-threshold = 25
+threshold = 30
 score = 9.5
 
 [[items]]
 title = "Project Hail Mary Banner"
 image = "projecthailmary.jpg"
 category = "movies"
-threshold = 70
+threshold = 120
 score = 9.6
 
 [[items]]
 title = "Avatar: The Way of Water Banner"
 image = "avatarwayofwater.jpg"
 category = "movies"
-threshold = 90
+threshold = 100
 score = 8.2
 
 [[items]]
 title = "How to Train Your Dragon Banner"
 image = "httyd.jpg"
 category = "movies"
-threshold = 80
+threshold = 130
 score = 9.4
 
 [[items]]
@@ -37,7 +37,7 @@ score = 8.8
 title = "Finding Nemo Banner"
 image = "findingnemo.jpg"
 category = "movies"
-threshold = 120
+threshold = 100
 score = 9.0
 
 [[items]]
@@ -58,7 +58,7 @@ score = 9.1
 title = "Spider-Man: No Way Home Banner"
 image = "spidermanbnd.jpg"
 category = "movies"
-threshold = 80
+threshold = 120
 score = 9.2
 
 [[items]]
@@ -67,3 +67,51 @@ image = "sloplevelling.jpg"
 category = "anime"
 threshold = 90
 score = -10
+
+[[items]]
+title = "Spaceflight Simulator"
+image_url = "https://a.allegroimg.com/original/11dced/5c67402745e59ab6f41152c83529/Spaceflight-Simulator-NOWA-PELNA-WERSJA-STEAM-PC"
+image = "spaceflightsimulator.jpg"
+category = "games"
+threshold = 120
+score = 10.0
+
+[[items]]
+title = "Cities: Skylines II"
+image_url = "https://m.media-amazon.com/images/M/MV5BZjFlNWE5YWEtZTY1OC00Y2Y2LWFiNjEtYjJjYjUxM2FlNzIyXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg"
+image = "citiesskylines2.jpg"
+category = "games"
+threshold = 180
+score = 8.6
+
+[[items]]
+title = "Poppy Playtime"
+image_url = "https://pbs.twimg.com/media/Gc4NrRtaAAE8fQt.jpg"
+image = "poppyplaytime.jpg"
+category = "games"
+threshold = 80
+score = 7.3
+
+[[items]]
+title = "Ford v Ferrari"
+image_url = "https://movingstory-prod.imgix.net/mx/posters/ford-v-ferrari.jpg"
+image = "fordvferrari.jpg"
+category = "movies"
+threshold = 150
+score = 9.0
+
+[[items]]
+title = "Parasyte (Anime)"
+image_url = "https://flxt.tmsimg.com/assets/p12154184_b_v8_ab.jpg"
+image = "parasyte.jpg"
+category = "anime"
+threshold = 70
+score = 8.5
+
+[[items]]
+title = "Blue Lock"
+image_url = "https://static.zerochan.net/Blue.Lock.1024.3723834.webp"
+image = "bluelock.jpg"
+category = "anime"
+threshold = 80
+score = 7.0

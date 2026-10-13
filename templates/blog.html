@@ -2,7 +2,12 @@
 
 {% block content %}
 <div class="container blog-main-page">
-    <h1 style="font-family: 'Geist', sans-serif;">{{ section.title }}</h1>
+    <h1 style="font-family: 'Geist', sans-serif;" class="blog-page-title">{{ section.title }}<a href="{{ get_url(path='blog/rss.xml', trailing_slash=false) }}" class="blog-rss-icon" aria-label="RSS feed" title="RSS feed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="19" r="2"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/></svg></a></h1>
+    <style>
+        .blog-page-title { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-rss-icon { display: inline-flex; align-items: center; text-decoration: none; color: var(--h1-color, #000); flex-shrink: 0; }
+        .blog-rss-icon svg { width: 20px !important; height: 20px !important; display: block; }
+    </style>
     <p class="friend-banners-label">friends webring</p>
     <div class="friend-banners">
         <a href="https://harsha.is-a.dev" target="_blank" rel="noopener"><img src="{{ get_url(path='button_harsha.png') }}" alt="harsha"></a>
