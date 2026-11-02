@@ -12,7 +12,6 @@ body.search-open {
     font-size: 1rem;
     line-height: 1;
     padding: 0.35rem 0.45rem;
-    transition: color 0.14s ease;
 }
 
 .search-trigger:hover {
@@ -144,6 +143,5 @@ body.search-open {
     .search-result,
     .search-trigger {
         animation: none !important;
-        transition: none !important;
     }
 }

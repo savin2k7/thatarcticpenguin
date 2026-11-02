@@ -47,12 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('theme-toggle');
     if (!toggleBtn) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduceMotion) {
-        preloadMask('dark');
-        preloadMask('light');
-    }
-
     // Inject the combined SVG switcher if not present
     if (!toggleBtn.querySelector('.solar-switch')) {
         const combinedSVG = `<svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="solar-switch">
@@ -63,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <path d="M4.62598 4.98248L6.04598 6.40248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
             <path d="M18.7656 19.1225L20.1856 20.5425" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
             <path d="M1.40576 12.7625H3.40576" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
-            <path d="M21.4058 12.7625H23.4058" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
+            <path d="M21.4058 12.7625H23.40576" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
             <path d="M4.62598 20.5425L6.04598 19.1225" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
             <path d="M18.7656 6.40248L20.1856 4.98248" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
         </g>
@@ -76,57 +70,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateToggleUI();
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // The GIF-mask transition belongs to the blog; everywhere else switches instantly.
+    const maskEnabled = !!document.startViewTransition && location.pathname.indexOf('/blog') === 0;
+
+    if (maskEnabled && !reduceMotion) {
+        preloadMask('dark');
+        preloadMask('light');
+    }
+
     let transitionInProgress = false;
 
     toggleBtn.addEventListener('click', () => {
-        (async () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-            if (transitionInProgress) return;
-            transitionInProgress = true;
+        if (!maskEnabled || reduceMotion || toggleBtn.hasAttribute('data-no-transition')) {
+            setTheme(newTheme);
+            return;
+        }
 
-            // Add theme-toggled class to enable animations
-            document.documentElement.classList.add('theme-toggled');
+        if (transitionInProgress) return;
+        transitionInProgress = true;
 
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const noTransition = reduceMotion || toggleBtn.hasAttribute('data-no-transition');
-
-            if (noTransition || !document.startViewTransition) {
-                clearMask();
-                await setTheme(newTheme);
-                document.documentElement.classList.remove('theme-toggled');
-                transitionInProgress = false;
-                return;
-            }
-
-            const maskBuffer = await preloadMask(newTheme);
-            clearMask();
-            setMask(newTheme, maskBuffer);
-
-            const transition = document.startViewTransition(async () => {
-                await setTheme(newTheme);
-            });
-
-            try {
-                await transition.finished;
-            } catch (e) {
-                // ignore
-            } finally {
-                clearMask();
-                transitionInProgress = false;
-                document.documentElement.classList.remove('theme-toggled');
-                if (typeof refreshThresholdImages === "function") {
-                    try {
-                        await refreshThresholdImages();
-                    } catch (e) {}
-                }
-            }
-        })();
+        runMaskTransition(newTheme).finally(() => {
+            transitionInProgress = false;
+        });
     });
 });
 
-async function setTheme(newTheme) {
+async function runMaskTransition(newTheme) {
+    document.documentElement.classList.add('theme-toggled');
+
+    try {
+        const maskBuffer = await preloadMask(newTheme);
+        clearMask();
+        setMask(newTheme, maskBuffer);
+
+        const transition = document.startViewTransition(() => {
+            setTheme(newTheme);
+        });
+
+        try {
+            await transition.finished;
+        } catch (e) {
+            // ignore aborted transitions
+        }
+    } finally {
+        clearMask();
+        document.documentElement.classList.remove('theme-toggled');
+    }
+}
+
+function setTheme(newTheme) {
     document.documentElement.setAttribute('data-theme', newTheme);
 
     if (newTheme === 'dark') {

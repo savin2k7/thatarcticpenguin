@@ -6,13 +6,13 @@
             <img src="{{ get_url(path='penguin.png') }}" alt="Penguin Profile Picture">
         </div>
         <nav class="socials">
-            <a href="{{ get_url(path='blog/') }}">
+            <a href="{{ get_url(path='blog/') }}" aria-label="Blog">
                 <i class="fa-solid fa-pen-clip"></i>
             </a>
-            <a href="mailto:sabareeshvinodh458@gmail.com">
+            <a href="mailto:sabareeshvinodh458@gmail.com" aria-label="Email">
                 <i class="fa-solid fa-paper-plane"></i>
             </a>
-            <a href="https://www.linkedin.com/in/sabareesh-v-35593736b/">
+            <a href="https://www.linkedin.com/in/sabareesh-v-35593736b/" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
             <a href="https://www.instagram.com/sa.vi.07/" aria-label="Instagram" id="Instagram">
@@ -21,17 +21,17 @@
             <a href="https://x.com/SabareeshVinodh" aria-label="Twitter" id="twitter">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="discord.html">
+            <a href="discord.html" aria-label="Discord">
                 <i class="fa-brands fa-discord"></i>
             </a>
             <a href="https://github.com/thatarcticpenguin" aria-label="GitHub" id="github">
                 <i class="fa-brands fa-github"></i>
             </a>
         </nav>
-
-        <img src="{{ get_url(path='banner.png') }}" class="homepage-banner banner-light" alt="Penguin Banner">
-        <img src="{{ get_url(path='dark_banner.png') }}" class="homepage-banner banner-dark" alt="Penguin Banner">
     </div>
+
+    <img src="{{ get_url(path='banner.png') }}" class="homepage-banner banner-light" alt="Penguin Banner">
+    <img src="{{ get_url(path='dark_banner.png') }}" class="homepage-banner banner-dark" alt="Penguin Banner">
 
     <div class="homepage-copy">
         <h1 class="homepage-title">That Arctic Penguin</h1>
@@ -40,6 +40,15 @@
         Welcome to my website, I am aiming to dive deep into the rabbit hole of how things work behind the sheet,
         and dive more into OSs, system design, and other stuff. <br><br>
         Outside of coding, i am learning editing, colorgrading, and photography. Also trynna check off my mangalists :D</p>
+    </div>
+
+    <div class="banner-boxes banner-boxes-left">
+        <a href="https://88x31.nl/" rel="noopener"><img src="{{ get_url(path='banners/madewithbrackets.gif') }}" alt="Made with Brackets" width="88" height="31"></a>
+        <a href="https://88x31.nl/" rel="noopener"><img src="{{ get_url(path='banners/madewithlove.gif') }}" alt="Made with Love" width="88" height="31"></a>
+    </div>
+    <div class="banner-boxes banner-boxes-right">
+        <a href="https://88x31.nl/" rel="noopener"><img src="{{ get_url(path='banners/handpainted.gif') }}" alt="Hand painted pixel art" width="88" height="31"></a>
+        <a href="https://88x31.nl/" rel="noopener"><img src="{{ get_url(path='banners/coffee.gif') }}" alt="Fueled by coffee" width="88" height="31"></a>
     </div>
 
     <style>
@@ -56,20 +65,21 @@
         }
 
         nav:not(.socials) {
-            position: absolute;
-            top: 1.4rem;
-            left: 1.6rem;
-            right: 1.6rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             width: auto !important;
-            margin-bottom: 0;
-            z-index: 1001;
+            margin: 0;
+            padding: 1.4rem 1.6rem;
+            z-index: 1000;
         }
 
         .profile-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.96rem;
+            gap: 1.1rem;
             z-index: 100;
             position: relative;
             margin-left: -800px;
@@ -81,14 +91,13 @@
             height: 400px;
             max-width: 90vw;
             max-height: 90vw;
-            border-radius: 50%;
+            border-radius: 30%;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             background: var(--card-bg);
             border: 2px solid var(--card-border);
-            transition: border-color 0.18s ease, transform 0.18s ease;
         }
 
         .profile-pic img {
@@ -96,37 +105,36 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            transition: transform 0.18s ease;
         }
 
         :root {
             --social-icon-color: #737373;
-            --social-hover-color: #ffffff;
+            --social-hover-color: #8899ff;
         }
 
         html[data-theme="light"] {
             --social-icon-color: #737373;
-            --social-hover-color: #000000;
+            --social-hover-color: #0000ee;
         }
 
         .socials {
-            position: absolute;
-            top: 200px;
-            left: 50%;
-            width: 0;
-            height: 0;
-            display: block;
-            padding: 0;
+            position: static;
+            width: auto;
+            height: auto;
             margin: 0;
+            padding: 0;
             background: none;
+            font-size: inherit;
+            z-index: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
 
         .socials a {
-            position: absolute;
-            width: 35px;
-            height: 35px;
-            left: -18px;
-            top: -18px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -136,24 +144,10 @@
         .socials a i {
             font-size: 19px;
             color: var(--social-icon-color);
-            transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
         }
-
-        .socials a:nth-child(1) { transform: rotate(-45deg) translateY(232px) rotate(45deg); }
-        .socials a:nth-child(2) { transform: rotate(-30deg) translateY(232px) rotate(30deg); }
-        .socials a:nth-child(3) { transform: rotate(-15deg) translateY(232px) rotate(15deg); }
-        .socials a:nth-child(4) { transform: rotate(0deg) translateY(232px) rotate(0deg); }
-        .socials a:nth-child(5) { transform: rotate(15deg) translateY(232px) rotate(-15deg); }
-        .socials a:nth-child(6) { transform: rotate(30deg) translateY(232px) rotate(-30deg); }
-        .socials a:nth-child(7) { transform: rotate(45deg) translateY(232px) rotate(-45deg); }
 
         .socials a:hover i {
             color: var(--social-hover-color);
-            transform: scale(1.15);
-        }
-
-        html[data-theme="dark"] .socials a:hover i {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
         .homepage-banner {
@@ -211,6 +205,36 @@
             white-space: normal;
         }
 
+        .banner-boxes {
+            position: absolute;
+            bottom: 3.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 5;
+        }
+
+        .banner-boxes-left {
+            left: 1.6rem;
+        }
+
+        .banner-boxes-right {
+            right: 1.6rem;
+            align-items: flex-end;
+        }
+
+        .banner-boxes a {
+            display: block;
+            line-height: 0;
+        }
+
+        .banner-boxes img {
+            display: block;
+            width: 88px;
+            height: 31px;
+            image-rendering: pixelated;
+        }
+
         .homepage-media {
             display: flex;
             align-items: center;
@@ -234,7 +258,7 @@
             border-radius: 12px;
             object-fit: cover;
             pointer-events: auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px var(--card-hover-shadow);
         }
 
         @media (max-width: 768px) {
@@ -247,7 +271,7 @@
                 overflow-y: visible;
                 min-height: 100vh;
                 padding-bottom: 120px;
-                padding-top: 5rem;
+                padding-top: 5.6rem;
                 padding-left: 0 !important;
                 padding-right: 0 !important;
                 margin-left: 0 !important;
@@ -270,88 +294,65 @@
             }
             .profile-pic {
                 margin-left: 0;
-            }
-            .socials {
-                position: static;
-                width: 100%;
-                height: auto;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.8rem;
-                margin-top: 1rem;
-            }
-            .socials a {
-                position: relative;
-                top: 0 !important;
-                left: 0 !important;
-                margin: 0 !important;
-                transform: none !important;
-                border: 1px solid var(--card-border);
-                border-radius: 50%;
-                width: 36px;
-                height: 36px;
-                background: var(--card-bg);
-            }
-            .socials a i {
-                font-size: 15px;
-            }
-            .socials a:hover {
-                border-color: var(--card-hover-border);
-            }
-            .socials a:hover i {
-                transform: scale(1.1);
-            }
-            .homepage-banner {
-                position: static;
-                bottom: auto;
-                transform: none;
-                width: 100%;
-                max-width: 400px;
-                margin: 0 auto;
-                display: block;
-                z-index: auto;
-            }
-            .homepage-copy {
-                position: static;
-                top: auto;
-                left: auto;
-                width: 100%;
-                padding: 0 1.6rem !important;
-                margin: 2rem 0 0 0 !important;
-                order: 2;
-                box-sizing: border-box;
-            }
-            .profile-pic {
-                margin: 0 !important;
                 width: 300px;
                 height: 300px;
                 max-width: 85vw;
                 max-height: 85vw;
             }
+            nav:not(.socials) {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                padding: 1rem 1.2rem;
+            }
             .socials {
                 position: static;
-                width: 100%;
+                width: auto;
                 height: auto;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
+                padding: 0;
+                margin: 0.5rem 0 0;
+                background: none;
                 gap: 0.8rem;
-                margin-top: 1rem;
-                order: 1;
+            }
+            .socials a i {
+                font-size: 16px;
+            }
+            .homepage-banner {
+                display: none !important;
+            }
+            .homepage-copy {
+                position: static;
+                top: auto;
+                left: auto;
+                right: auto;
+                width: 100%;
+                padding: 0 1.6rem !important;
+                margin: 2rem 0 0 0;
+                box-sizing: border-box;
             }
             .homepage-title {
                 white-space: normal;
-                font-size: 2.4rem;
+                font-size: 2.2rem;
             }
             .homepage-subtext {
-                white-space: normal;
                 font-size: 14px;
             }
             .homepage-media {
                 display: none !important;
+            }
+            .banner-boxes {
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                margin: 1.5rem auto 0;
+                align-items: center;
+            }
+            .banner-boxes-right {
+                align-items: center;
             }
         }
     </style>
