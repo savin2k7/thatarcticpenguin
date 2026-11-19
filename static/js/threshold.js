@@ -123,8 +123,6 @@ function setupThresholdImages() {
         original.loading = 'lazy';
         original.decoding = 'async';
         original.fetchPriority = 'low';
-        original.src = posterSrc;
-        original.dataset.loaded = 'true';
         wrapper.appendChild(original);
 
         if (img.dataset.thresholdSrc) {
@@ -136,6 +134,13 @@ function setupThresholdImages() {
                 img.removeEventListener('error', handleThresholdError);
             };
             img.addEventListener('error', handleThresholdError);
+        }
+
+        if (img.dataset.note) {
+            const note = document.createElement('div');
+            note.className = 'garden-note';
+            note.textContent = img.dataset.note;
+            wrapper.appendChild(note);
         }
 
         if (img.dataset.rating) {

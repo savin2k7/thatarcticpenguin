@@ -8,6 +8,9 @@
     view-transition-name: root;
 
     /* View transition variables */
+    --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
+    --mask-gif-dance: url('/shigure-ui-dance.gif');
+    --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
     --expo-in: linear(
         0 0%, 0.0085 31.26%, 0.0167 40.94%,
         0.0289 48.86%, 0.0471 55.92%,
@@ -17,10 +20,8 @@
         0.4419 88.22%, 0.554 91.48%,
         0.6835 94.51%, 0.8316 97.34%, 1 100%
     );
-    --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
-    --mask-gif-dance: url('/shigure-ui-dance.gif');
-    --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
-    --bg-color: #0f0f0f;
+    --bg-color: #171717;
+    --nav-text-color: #a5b4ff;
     --text-color: #e0e0e0;
     --h1-color: #ffffff;
     --card-bg: #151515;
@@ -54,7 +55,8 @@
     }
 
 html[data-theme="light"] {
-    --bg-color: #ffffff;
+    --bg-color: #FAF9F6;
+    --nav-text-color: #8899ff;
     --text-color: #2b2b2b;
     --h1-color: #0a0a0a;
     --card-bg: #ffffff;
@@ -154,7 +156,7 @@ nav a:hover {
     font-family: 'Lilita One', sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
-    color: var(--h1-color);
+    color: var(--nav-text-color);
     letter-spacing: 0.5px;
 }
 
@@ -181,7 +183,7 @@ nav a:hover {
 
 .desktop-links a {
     font-family: 'Lilita One', sans-serif;
-    color: var(--subtitle-color);
+    color: var(--nav-text-color);
     text-decoration: none;
 }
 
@@ -233,7 +235,7 @@ nav a:hover {
     width: auto;
     min-width: 160px;
     height: auto;
-    background: var(--card-bg);
+    background: var(--bg-color);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     z-index: 1000;
@@ -258,7 +260,7 @@ nav a:hover {
 
 .mobile-menu-overlay a {
     font-family: 'Lilita One', sans-serif;
-    color: var(--subtitle-color);
+    color: var(--nav-text-color);
     text-decoration: none;
 }
 
@@ -500,6 +502,11 @@ a.blog-inline-tag {
     .blog-content {
         padding: 0.8rem;
     }
+
+    .blog-main-page {
+        font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -674,6 +681,7 @@ html[data-theme="dark"] .sun-icon path {
     opacity: 0;
 }
 
+
 /* Garden poster grid */
 .garden-title {
     margin-bottom: 0.2rem;
@@ -745,6 +753,27 @@ img.threshold-hover.processed {
     opacity: 1;
 }
 
+.garden-note {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.8rem 0.9rem;
+    background: rgba(0, 0, 0, 0.82);
+    color: #f5f5f5;
+    font-family: 'Comic Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    display: none;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.threshold-hover-wrapper:hover .garden-note,
+.threshold-hover-wrapper.active .garden-note {
+    display: block;
+}
+
 .rating-bar {
     position: absolute;
     top: 6px;
@@ -792,6 +821,11 @@ img.threshold-hover.processed {
         top: 6px;
         right: 6px;
     }
+}
+
+.blog-main-page {
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
 }
 
 .blog-section-title {
@@ -1201,137 +1235,13 @@ html[data-theme="light"] .not-found-title {
     }
 }
 
-/* ===== Theme switch: GIF-masked view transitions ===== */
-html.theme-toggled *,
-html.theme-toggled *::before,
-html.theme-toggled *::after {
-    transition: none !important;
+/* Surprise-me button placement */
+.garden-random {
+    margin-left: auto;
 }
 
-::view-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 2147483647;
-    pointer-events: none;
-    isolation: isolate;
-}
-
-::view-transition-group(root) {
-    position: absolute;
-    inset: 0;
-    z-index: 2147483647;
-    animation-timing-function: var(--expo-in);
-}
-
-::view-transition-image-pair(root) {
-    position: absolute;
-    inset: 0;
-    z-index: 2147483647;
-    isolation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-    position: absolute;
-    inset: 0;
-    display: block;
-    mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-    z-index: 0;
-}
-
-::view-transition-new(root) {
-    z-index: 1;
-}
-
-/* Dark -> Light: dancing girl GIF mask */
-html[data-theme="light"]::view-transition-new(root) {
-    -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-dance));
-    mask-image: var(--current-mask-gif, var(--mask-gif-dance));
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    animation: scale-light 1.8s both;
-}
-
-html[data-theme="light"]::view-transition-old(root) {
-    animation: old-exit-light 1.8s both;
-}
-
-/* Light -> Dark: Bad Apple GIF mask */
-html[data-theme="dark"]::view-transition-new(root) {
-    -webkit-mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
-    mask-image: var(--current-mask-gif, var(--mask-gif-bad-apple));
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    animation: scale-dark 2.8s both;
-}
-
-html[data-theme="dark"]::view-transition-old(root) {
-    animation: old-exit-dark 2.8s both;
-}
-
-@keyframes scale-light {
-    0% {
-        -webkit-mask-size: 0;
-        mask-size: 0;
-    }
-    10% {
-        -webkit-mask-size: 50vmax;
-        mask-size: 50vmax;
-    }
-    85% {
-        -webkit-mask-size: 50vmax;
-        mask-size: 50vmax;
-    }
-    100% {
-        -webkit-mask-size: 2000vmax;
-        mask-size: 2000vmax;
-    }
-}
-
-@keyframes old-exit-light {
-    0% { opacity: 1; }
-    100% { opacity: 1; }
-}
-
-@keyframes scale-dark {
-    0% {
-        -webkit-mask-size: 0;
-        mask-size: 0;
-    }
-    8% {
-        -webkit-mask-size: 28vmax;
-        mask-size: 28vmax;
-    }
-    73% {
-        -webkit-mask-size: 28vmax;
-        mask-size: 28vmax;
-    }
-    100% {
-        -webkit-mask-size: 2000vmax;
-        mask-size: 2000vmax;
-    }
-}
-
-@keyframes old-exit-dark {
-    0% { opacity: 1; }
-    100% { opacity: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(root),
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-        animation: none !important;
-    }
-
-    .solar-switch path {
-        transition: none !important;
+@media (max-width: 600px) {
+    .garden-random {
+        margin-left: 0;
     }
 }

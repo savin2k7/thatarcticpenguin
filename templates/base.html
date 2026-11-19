@@ -17,16 +17,11 @@
     <link rel="stylesheet" href="{{ get_url(path='blogpagestyle.css') }}">
     <link rel="stylesheet" href="{{ get_url(path='search.css') }}">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path='rss.xml', trailing_slash=false) }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ get_url(path='favicon.ico') }}"/>
     {% block extra_head %}{% endblock extra_head %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist+Pixel&family=Geist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lilita+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Geist:ital,wght@0,100..900;1,100..900&family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lilita+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css" rel="stylesheet">
     <script src="{{ get_url(path="js/threshold.js") }}" defer></script>
     <script type="application/ld+json">
@@ -265,6 +260,29 @@
                 }
             }
 
+            // Playful burst: extra flakes that fall for a few seconds, then leave.
+            function snowBurst(count = 45, duration = 4000) {
+                for (let i = 0; i < count; i++) {
+                    snowflakes.push({
+                        x: Math.random() * width,
+                        y: -20 - Math.random() * height * 0.5,
+                        size: Math.random() * 12 + 8,
+                        speedY: Math.random() * 3 + 3,
+                        speedX: Math.random() * 1.5 - 0.75,
+                        rotation: Math.random() * 360,
+                        rotationSpeed: Math.random() * 4 - 2,
+                        imageIndex: Math.floor(Math.random() * svgTemplates.length),
+                        burst: true
+                    });
+                }
+                // After the burst ends, these flakes keep falling and leave
+                // through the bottom of the screen instead of vanishing mid-air.
+                setTimeout(() => {
+                    snowflakes.forEach(f => { if (f.burst) f.retire = true; });
+                }, duration);
+            }
+            window.snowBurst = snowBurst;
+
             let currentThemeColor = document.documentElement.getAttribute('data-theme') === 'light'
                 ? "rgba(100, 100, 100, 0.65)"
                 : "rgba(255, 255, 255, 0.85)";
@@ -306,6 +324,7 @@
                     flake.x += flake.speedX + Math.sin(flake.y * 0.01) * 0.4;
                     flake.rotation += flake.rotationSpeed;
                     if (flake.y > height + 20) {
+                        if (flake.retire) { flake.dead = true; continue; }
                         flake.y = -20;
                         flake.x = Math.random() * width;
                         flake.size = Math.random() * 12 + 8;
@@ -313,6 +332,7 @@
                         flake.imageIndex = Math.floor(Math.random() * svgTemplates.length);
                     }
                 }
+                snowflakes = snowflakes.filter(f => !f.dead);
             }
 
             function stopSnow() {

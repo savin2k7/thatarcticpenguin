@@ -8,6 +8,9 @@
     view-transition-name: root;
 
     /* View transition variables */
+    --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
+    --mask-gif-dance: url('/shigure-ui-dance.gif');
+    --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
     --expo-in: linear(
         0 0%, 0.0085 31.26%, 0.0167 40.94%,
         0.0289 48.86%, 0.0471 55.92%,
@@ -17,9 +20,6 @@
         0.4419 88.22%, 0.554 91.48%,
         0.6835 94.51%, 0.8316 97.34%, 1 100%
     );
-    --mask-gif: url('https://media.tenor.com/cyORI7kwShQAAAAi/shigure-ui-dance.gif');
-    --mask-gif-dance: url('/shigure-ui-dance.gif');
-    --mask-gif-bad-apple: url('/bad-apple-mask-full.gif');
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
     --text-sm: .875rem;
@@ -45,7 +45,8 @@
     --tracking-wider: .05em;
     --leading-relaxed: 1.625;
 
-    --bg-color: #0f0f0f;
+    --bg-color: #171717;
+    --nav-text-color: #a5b4ff;
     --card-bg: #151515;
     --text-color: #e0e0e0;
     --logo-color: #ffffff;
@@ -86,7 +87,8 @@
 }
 
 html[data-theme="light"] {
-    --bg-color: #ffffff;
+    --bg-color: #FAF9F6;
+    --nav-text-color: #8899ff;
     --card-bg: #ffffff;
     --text-color: #2b2b2b;
     --logo-color: #0a0a0a;
@@ -129,7 +131,8 @@ html[data-theme="light"] {
 body {
     background: var(--bg-color);
     color: var(--text-color);
-    font-family: "Geist", sans-serif;
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
     font-optical-sizing: auto;
     font-weight: var(--font-weight-medium);
     font-style: normal;
@@ -175,7 +178,7 @@ nav a:hover {
 .penguin-logo {
     font-family: 'Lilita One', sans-serif;
     font-size: 1.25rem;
-    color: var(--h1-color);
+    color: var(--nav-text-color);
     letter-spacing: 0.5px;
 }
 
@@ -204,7 +207,7 @@ nav a:hover {
 
 .desktop-links a {
     font-family: 'Lilita One', sans-serif;
-    color: var(--subtitle-color);
+    color: var(--nav-text-color);
     text-decoration: none;
 }
 
@@ -290,7 +293,7 @@ html[data-theme="dark"] .solar-switch {
     right: 1.6rem;
     width: auto;
     min-width: 160px;
-    background: var(--card-bg);
+    background: var(--bg-color);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     z-index: 1000;
@@ -314,7 +317,7 @@ html[data-theme="dark"] .solar-switch {
 
 .mobile-menu-overlay a {
     font-family: 'Lilita One', sans-serif;
-    color: var(--subtitle-color);
+    color: var(--nav-text-color);
     text-decoration: none;
 }
 
@@ -374,7 +377,7 @@ html[data-theme="dark"] .content img.theme-aware {
 }
 
 .content p, .content li {
-    font-size: var(--text-lg);
+    font-size: 16px;
     line-height: var(--leading-relaxed);
     margin-bottom: 1.5rem;
     color: var(--content-p-color);
@@ -510,6 +513,15 @@ h2, h3, h4 {
 
     .code-block {
         padding: 15px;
+    }
+
+    body {
+        font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+    }
+
+    .content p, .content li {
+        font-size: 16px;
     }
 }
 
@@ -661,5 +673,103 @@ html[data-theme="dark"]::view-transition-old(root) {
 
     .solar-switch path {
         transition: none !important;
+    }
+}
+
+/* ===== Post reading aids: generated contents, reading time, prev/next ===== */
+.post-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.post-toc {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-left: 1px solid var(--card-border);
+    padding-left: 0.9rem;
+}
+
+.post-toc summary {
+    cursor: pointer;
+    color: var(--h1-color);
+    margin-bottom: 0.4rem;
+}
+
+.post-toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-toc ol ol {
+    padding-left: 0.9rem;
+}
+
+.post-toc a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.post-toc a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.post-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 3rem 0 2rem;
+    font-family: 'Geist Mono', monospace;
+}
+
+.post-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 48%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.post-step-older {
+    margin-left: auto;
+    text-align: right;
+}
+
+.post-step-label {
+    font-size: 0.72rem;
+    opacity: 0.6;
+}
+
+.post-step-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.05rem;
+}
+
+.post-step:hover .post-step-title {
+    text-decoration: underline;
+}
+
+@media (min-width: 1100px) {
+    .post-layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .post-toc {
+        position: sticky;
+        top: 6rem;
+    }
+
+    .post-toc details {
+        display: block;
+    }
+
+    .post-toc summary {
+        pointer-events: none;
     }
 }

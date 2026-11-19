@@ -9,7 +9,9 @@
     <div class="garden-controls">
         <div class="garden-filters" role="group" aria-label="Filter garden">
             {% for category in categories %}
-                <button class="garden-filter-btn {% if category == 'all' %}button-secondary{% else %}button-primary{% endif %}" type="button" data-filter="{{ category }}" {% if category != "all" %}{% set_global has_category = false %}{% for item in garden.items %}{% if item.category == category %}{% set_global has_category = true %}{% endif %}{% endfor %}{% if not has_category %}aria-disabled="true"{% endif %}{% endif %}>{% if category == 'all' %}All{% elif category == 'anime' %}Anime{% elif category == 'tv' %}TV{% elif category == 'movies' %}Movies{% elif category == 'books' %}Books{% else %}Games{% endif %}</button>
+                {% set_global has_category = category == "all" %}
+                {% for item in garden.items %}{% if item.category == category %}{% set_global has_category = true %}{% endif %}{% endfor %}
+                <button class="garden-filter-btn {% if category == 'all' %}button-secondary{% else %}button-primary{% endif %}" type="button" data-filter="{{ category }}"{% if not has_category %} aria-disabled="true"{% endif %}>{% if category == 'all' %}All{% elif category == 'anime' %}Anime{% elif category == 'tv' %}TV{% elif category == 'movies' %}Movies{% elif category == 'books' %}Books{% else %}Games{% endif %}</button>
             {% endfor %}
         </div>
         <div class="garden-sort-dropdown">
@@ -26,6 +28,7 @@
                 <button class="garden-sort-btn button-primary" type="button" data-sort="lowest" role="menuitem">Lowest rated</button>
             </div>
         </div>
+        <button class="garden-random button-secondary" type="button">surprise me</button>
     </div>
 
     <div class="garden-grid" aria-live="polite">
@@ -39,6 +42,7 @@
              data-threshold="{{ item.threshold }}"
              data-category="{{ item.category }}"
              {% if item.score is defined %}data-score="{{ item.score }}"{% endif %}
+             {% if item.note is defined %}data-note="{{ item.note }}"{% endif %}
              {% if item.rating_label is defined %}data-rating="{{ item.rating_label }}"{% elif item.score is defined %}data-rating="{{ item.score }}/10"{% endif %}
              class="threshold-hover processed" style="opacity: 1;"
              alt="{{ item.title }}">
@@ -47,95 +51,7 @@
     <p class="garden-empty-msg blog-empty-msg" hidden>nothing here for this filter :|</p>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const initGarden = () => {
-    const filterButtons = document.querySelectorAll('.garden-filter-btn');
-    const sortTrigger = document.querySelector('.garden-sort-trigger');
-    const sortMenu = document.querySelector('.garden-sort-menu');
-    const sortLabel = document.querySelector('.garden-sort-label');
-    const sortButtons = document.querySelectorAll('.garden-sort-btn');
-    const grid = document.querySelector('.garden-grid');
-    const emptyState = document.querySelector('.garden-empty-msg');
-    let activeFilter = 'all';
-    let activeSort = 'default';
-    const defaultOrder = [...grid.querySelectorAll('.threshold-hover-wrapper')];
-    if (!defaultOrder.length) {
-        requestAnimationFrame(initGarden);
-        return;
-    }
-
-    function applyView() {
-        const items = [...grid.querySelectorAll('.threshold-hover-wrapper')];
-
-        items.forEach(item => {
-            const category = (item.dataset.category || '').trim().toLowerCase();
-            const matches = activeFilter === 'all' || category === activeFilter;
-            item.hidden = !matches;
-        });
-
-        if (activeSort === 'default') {
-            defaultOrder.forEach(item => grid.appendChild(item));
-        } else {
-            items.sort((a, b) => {
-                const aScore = Number(a.dataset.score);
-                const bScore = Number(b.dataset.score);
-                const aMissing = !Number.isFinite(aScore);
-                const bMissing = !Number.isFinite(bScore);
-                if (aMissing && bMissing) return 0;
-                if (aMissing) return 1;
-                if (bMissing) return -1;
-                return activeSort === 'highest' ? bScore - aScore : aScore - bScore;
-            }).forEach(item => grid.appendChild(item));
-        }
-
-        const visibleItems = items.filter(item => !item.hidden);
-        const hasVisibleItems = visibleItems.length > 0;
-        emptyState.hidden = hasVisibleItems;
-    }
-
-    function closeSortMenu() {
-        sortMenu.hidden = true;
-        sortTrigger.setAttribute('aria-expanded', 'false');
-    }
-
-    sortTrigger.addEventListener('click', () => {
-        const open = sortMenu.hidden;
-        sortMenu.hidden = !open;
-        sortTrigger.setAttribute('aria-expanded', String(open));
-    });
-
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            activeFilter = btn.dataset.filter.toLowerCase();
-            filterButtons.forEach(b => {
-                b.classList.toggle('button-secondary', b === btn);
-                b.classList.toggle('button-primary', b !== btn);
-            });
-            applyView();
-        });
-    });
-
-    sortButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            activeSort = btn.dataset.sort;
-            sortLabel.textContent = btn.textContent;
-            sortButtons.forEach(b => {
-                b.classList.toggle('button-secondary', b === btn);
-                b.classList.toggle('button-primary', b !== btn);
-            });
-            closeSortMenu();
-            applyView();
-        });
-    });
-
-    document.addEventListener('click', event => {
-        if (!event.target.closest('.garden-sort-dropdown')) closeSortMenu();
-    });
-    };
-    initGarden();
-});
-</script>
+<script src="{{ get_url(path="js/garden.js") }}" defer></script>
 
 <p class="built-with">built with <a href="https://www.getzola.org/" target="_blank" rel="noopener">zola</a></p>
 {% endblock %}
